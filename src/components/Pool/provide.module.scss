@@ -1,0 +1,89 @@
+$breakpoint-mobile: 335px;
+$breakpoint-tablet: 781px;
+$breakpoint-desktop: 1024px;
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+.unlockStageMask {
+  background: #09180f;
+  padding: 32px;
+  color: #ffffff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &:hover {
+    cursor: pointer;
+    background: lighten(#09180f, 5%);
+    .unlockBtn {
+      opacity: 0.7;
+    }
+  }
+  .title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .unlockBtn {
+    font-size: 40px;
+    line-height: 48px;
+    cursor: pointer;
+  }
+}
+.flex {
+  display: flex;
+  & > div {
+    margin-right: 50px;
+  }
+}
+@include mobile {
+  .unlockStageMask {
+    .unlockBtn {
+      font-size: 32px;
+      line-height: 38px;
+    }
+  }
+  .maxModal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #424242;
+    z-index: 20;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .title {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 40px;
+      line-height: 48px;
+      margin-top: 70px;
+      color: #ffffff;
+    }
+    .btn {
+      & > div {
+        cursor: pointer;
+        span {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 32px;
+          line-height: 38px;
+          color: #ffffff;
+          span {
+            opacity: 0.4;
+          }
+        }
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+}

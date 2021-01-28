@@ -1,0 +1,84 @@
+$breakpoint-mobile: 335px;
+$breakpoint-tablet: 781px;
+$breakpoint-desktop: 1024px;
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+.firstLine {
+  margin-left: 60px;
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 20px;
+  line-height: 24px;
+  & > div {
+    color: rgb(255, 255, 255);
+    p {
+      margin-left: 0;
+    }
+  }
+}
+.container {
+  // height: 75%;
+  overflow-y: scroll;
+  margin-top: 136px;
+  // position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.unlockStageMask {
+  background: #09180f;
+  padding: 32px;
+  color: #ffffff;
+  margin-top: 104px;
+  height: calc(100% - 192px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &:hover {
+    cursor: pointer;
+    background: lighten(#09180f, 5%);
+    .unlockBtn {
+      opacity: 0.7;
+    }
+  }
+  .title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .unlockBtn {
+    font-size: 40px;
+    line-height: 48px;
+  }
+}
+@include mobile {
+  .firstLine {
+    margin-left: 0px;
+    display: flex;
+    & > div {
+      margin-left: 5px;
+    }
+  }
+  .container {
+    // height: 60%;
+    margin-top: 0px;
+  }
+  .unlockStageMask {
+    margin-top: 0;
+    .unlockBtn {
+      font-size: 32px;
+      line-height: 38px;
+    }
+  }
+  .cursorPointer {
+    font-size: 32px;
+  }
+}
+.cursorPointer {
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
+}

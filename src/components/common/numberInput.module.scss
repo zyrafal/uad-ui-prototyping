@@ -1,0 +1,39 @@
+$breakpoint-mobile: 335px;
+$breakpoint-tablet: 781px;
+$breakpoint-desktop: 1024px;
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+.container {
+  display: flex;
+  input {
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  button {
+    outline: none !important;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  button[disabled] {
+    cursor: not-allowed !important;
+    opacity: 0.2;
+  }
+}
+
+@include mobile {
+  .container {
+    input {
+      width: 200px !important;
+    }
+  }
+}

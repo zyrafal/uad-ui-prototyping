@@ -1,0 +1,493 @@
+$breakpoint-mobile: 335px;
+$breakpoint-tablet: 781px;
+$breakpoint-desktop: 1024px;
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+.committedText {
+  p {
+    color: black !important;
+  }
+}
+.statusBar {
+  height: 16px;
+  width: 100%;
+}
+.firstLine {
+  display: block !important;
+  margin-left: 60px;
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 20px;
+  line-height: 24px;
+  & > div {
+    color: rgb(255, 255, 255);
+    p {
+      margin-left: 0;
+    }
+    a {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.flexBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.divideTwo {
+  overflow: hidden;
+  & > div {
+    float: left;
+    width: 50%;
+  }
+}
+
+.historyContainer {
+  padding: 32px;
+  margin-top: 11px;
+  overflow: hidden;
+  .governanceTitle {
+    font-size: 40px;
+    line-height: 48px;
+    margin-bottom: 48px;
+    color: #ffffff;
+  }
+  .candidateHistory {
+    .card {
+      width: 30%;
+      height: 458px;
+      float: left;
+      background: #282828;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      margin-right: 3%;
+      margin-bottom: 32px;
+      & > .flexBlock {
+        padding: 32px;
+        height: calc(100% - 16px);
+      }
+      &:hover {
+        background: lighten($color: #282828, $amount: 5%);
+        cursor: pointer;
+      }
+      .textBlock {
+        margin-top: 32px;
+        p {
+          font-size: 20px;
+          line-height: 24px;
+          color: #ffffff;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          &:nth-last-child(2) {
+            color: rgba(255, 255, 255, 0.4);
+          }
+        }
+      }
+    }
+    .votingCard {
+      width: 30%;
+      height: 458px;
+      float: left;
+      background: #feb258;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      margin-right: 3%;
+      margin-bottom: 32px;
+      & > .flexBlock {
+        padding: 32px;
+        height: calc(100% - 16px);
+      }
+      &:hover {
+        background: lighten($color: #feb258, $amount: 5%);
+        cursor: pointer;
+      }
+      .textBlock {
+        margin-top: 32px;
+        p {
+          font-size: 20px;
+          line-height: 24px;
+          color: black;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          &:nth-last-child(2) {
+            color: rgba(0, 0, 0, 0.4);
+          }
+        }
+      }
+    }
+  }
+}
+
+.mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(40px);
+  cursor: pointer;
+  z-index: 9;
+}
+.candidate {
+  position: fixed;
+  width: 50%;
+  height: 100%;
+  overflow-y: scroll;
+  top: 0;
+  right: 0;
+  background: #424242;
+  z-index: 10;
+  .candidateModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+    .textBlock {
+      p {
+        font-size: 20px;
+        line-height: 24px;
+        color: #ffffff;
+        &:nth-child(1) {
+          opacity: 0.4;
+        }
+      }
+    }
+
+    .candidateLink {
+      padding: 64px 32px 0px 32px;
+      p {
+        font-size: 32px;
+        line-height: 38px;
+        color: #ffffff;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        &:nth-child(1) {
+          opacity: 0.4;
+        }
+      }
+      a {
+        text-decoration: none;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    .proposerLink {
+      padding: 39px 32px 71px 32px;
+      p {
+        font-size: 32px;
+        line-height: 38px;
+        color: #ffffff;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        &:nth-child(1) {
+          opacity: 0.4;
+        }
+      }
+      a {
+        text-decoration: none;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    .voteHeader {
+      display: flex;
+      padding: 0px 32px 0px 32px;
+      justify-content: space-between;
+      .textBlock {
+        .flexBlock {
+          & > div {
+            &:nth-child(1) {
+              margin-bottom: 32px;
+            }
+          }
+        }
+      }
+    }
+
+    .bottom {
+      // position: absolute;
+      z-index: 12;
+      bottom: 0;
+      width: 100%;
+      .commit {
+        background: #353535;
+        height: 102px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        & > p {
+          font-size: 32px;
+          line-height: 38px;
+          color: #ffffff;
+        }
+        &:hover {
+          filter: brightness(110%);
+          cursor: pointer;
+          p {
+            opacity: 0.7;
+          }
+        }
+      }
+      .commit_disabled {
+        background: #353535;
+        height: 102px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        & > p {
+          font-size: 32px;
+          line-height: 38px;
+          color: #ffffff;
+        }
+        opacity: 0.5;
+      }
+      .vote {
+        height: 200px;
+        .unvote {
+          background: #feb258;
+          height: 100%;
+          p {
+            font-size: 32px;
+            line-height: 38px;
+            color: #000000;
+            &:nth-child(1) {
+              opacity: 0.4;
+            }
+          }
+          cursor: pointer;
+          padding: 42px 0px 42px 32px;
+          &:hover {
+            background: lighten(#feb258, 5%);
+          }
+        }
+        .approved {
+          background: #37a33b;
+          height: 100%;
+          p {
+            font-size: 32px;
+            line-height: 38px;
+            color: #000000;
+            &:nth-child(1) {
+              opacity: 0.4;
+            }
+          }
+          padding: 42px 0px 42px 32px;
+        }
+        .rejected {
+          background: #f24900;
+          height: 100%;
+          p {
+            font-size: 32px;
+            line-height: 38px;
+            color: #ffffff;
+            &:nth-child(1) {
+              opacity: 0.4;
+            }
+          }
+          padding: 42px 0px 42px 32px;
+        }
+        .Accept {
+          background: #3c67ff;
+          float: left;
+          width: 50%;
+          height: 100%;
+          font-size: 32px;
+          line-height: 38px;
+          color: #ffffff;
+          cursor: pointer;
+          padding: 80px 0px 80px 32px;
+          &:hover {
+            background: lighten(#3c67ff, 5%);
+          }
+        }
+        .Reject {
+          background: #e60419;
+          float: left;
+          width: 50%;
+          height: 100%;
+          font-size: 32px;
+          line-height: 38px;
+          color: #ffffff;
+          cursor: pointer;
+          padding: 80px 0px 80px 32px;
+          &:hover {
+            background: lighten(#e60419, 5%);
+          }
+        }
+      }
+    }
+  }
+}
+.modalNav {
+  display: none;
+}
+
+@include mobile {
+  .modalNav {
+    display: block;
+    margin-top: 32px;
+    margin-left: 32px;
+    color: white;
+  }
+  .firstLine {
+    display: flex !important;
+    margin-left: 0px;
+    margin-bottom: 8px;
+    & > div {
+      margin-left: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      & > p {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .governanceTitle {
+    margin-bottom: 24px;
+  }
+  .historyContainer {
+    padding: 0;
+    margin-top: -80px;
+    .governanceTitle {
+      padding-left: 32px;
+    }
+    .candidateHistory {
+      .card {
+        width: 100%;
+        height: 380px;
+        margin-bottom: 1px;
+        .textBlock {
+          margin-top: 24px;
+        }
+        .divideTwo {
+          .flexBlock {
+            .textBlock {
+              p {
+                margin-bottom: 8px;
+              }
+            }
+          }
+        }
+      }
+      .votingCard {
+        width: 100%;
+        height: 380px;
+        margin-bottom: 1px;
+        .textBlock {
+          margin-top: 24px;
+        }
+        .divideTwo {
+          .flexBlock {
+            .textBlock {
+              p {
+                margin-bottom: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .candidate {
+    width: 100%;
+    .candidateModal {
+      .textBlock {
+        p {
+          font-size: 16px;
+          line-height: 19px;
+        }
+        margin-bottom: 8px;
+      }
+
+      .candidateLink {
+        padding: 0px 32px 10px 32px;
+        p {
+          font-size: 16px;
+          line-height: 19px;
+        }
+      }
+      .proposerLink {
+        padding: 0px 32px 10px 32px;
+        p {
+          font-size: 16px;
+          line-height: 19px;
+        }
+      }
+      .voteHeader {
+        flex-direction: column;
+        .textBlock {
+          .flexBlock {
+            & > div {
+              &:nth-child(1) {
+                margin-bottom: 8px;
+              }
+            }
+          }
+        }
+      }
+      .bottom {
+        position: relative;
+        bottom: 0;
+        .commit {
+          height: 83px;
+          & > p {
+            font-size: 16px;
+            line-height: 19px;
+          }
+        }
+        .commit_disabled {
+          height: 83px;
+          & > p {
+            font-size: 16px;
+            line-height: 19px;
+          }
+        }
+        .vote {
+          height: 100px;
+          .unvote {
+            p {
+              font-size: 16px;
+              line-height: 19px;
+            }
+          }
+          .approved {
+            p {
+              margin: 0;
+              font-size: 16px;
+              line-height: 19px;
+            }
+          }
+          .rejected {
+            p {
+              margin: 0;
+              font-size: 16px;
+              line-height: 19px;
+            }
+          }
+          .Accept {
+            font-size: 20px;
+            line-height: 24px;
+            padding: 40px 0px 0px 32px;
+          }
+          .Reject {
+            font-size: 20px;
+            line-height: 24px;
+            padding: 40px 0px 0px 32px;
+          }
+        }
+      }
+    }
+  }
+}

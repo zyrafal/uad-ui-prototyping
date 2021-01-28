@@ -1,0 +1,89 @@
+$breakpoint-mobile: 335px;
+$breakpoint-tablet: 781px;
+$breakpoint-desktop: 1024px;
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+.logoUser {
+  align-self: center;
+  display: flex;
+  &:hover {
+    p {
+      opacity: 0.7;
+    }
+  }
+  .logoRight {
+    border-bottom: 1px solid #ffffff;
+    height: 0px;
+    width: 117px;
+    align-self: center;
+    margin-left: 6px;
+  }
+  p {
+    background: linear-gradient(
+      90.26deg,
+      #e60419 0.25%,
+      #b642e1 21.51%,
+      #c0e531 50.99%,
+      #11ccf7 80.47%,
+      #4b12b7 99.8%
+    );
+    font-size: 20px;
+    line-height: 24px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400% 400%;
+    animation: gradient 10s linear infinite alternate;
+  }
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 20%;
+  }
+  10% {
+    background-position: 20% 40%;
+  }
+  20% {
+    background-position: 40% 60%;
+  }
+  30% {
+    background-position: 60% 80%;
+  }
+  40% {
+    background-position: 80% 100%;
+  }
+  50% {
+    background-position: 100% 80%;
+  }
+  60% {
+    background-position: 80% 60%;
+  }
+  70% {
+    background-position: 60% 40%;
+  }
+  80% {
+    background-position: 40% 20%;
+  }
+  100% {
+    background-position: 20% 0%;
+  }
+}
+@include mobile {
+  .logoUser {
+    .logoRight {
+      display: none;
+    }
+    .font24 {
+      font-size: 24px;
+      line-height: 29px;
+    }
+    .font20 {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+}

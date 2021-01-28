@@ -1,0 +1,103 @@
+.container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: #060606;
+  overflow-y: scroll;
+  .nav {
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 32px;
+    color: white;
+    span {
+      position: fixed;
+      top: 32px;
+      left: 32px;
+      z-index: 2;
+    }
+    p {
+      margin-top: 100px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+  .content {
+    .card {
+      position: relative;
+      height: 375px;
+      cursor: pointer;
+      margin-bottom: 1px;
+      & > div {
+        height: 100%;
+        padding: 32px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+      p {
+        margin-bottom: 8px;
+      }
+      .redeem {
+        background: #282828;
+        & > div {
+          margin-bottom: 24px;
+        }
+      }
+      .redeemed {
+        background: linear-gradient(
+            0deg,
+            rgba(230, 4, 25, 0.1),
+            rgba(230, 4, 25, 0.1)
+          ),
+          #282828;
+        & > div {
+          margin-bottom: 24px;
+        }
+      }
+      .redeemedMark {
+        position: absolute;
+        right: 32px;
+        top: 32px;
+        font-size: 20px;
+        line-height: 24px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+}
+.CardDetail {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  .nav {
+    width: 100%;
+    top: 0;
+    left: 0;
+    span {
+      color: white;
+    }
+    padding: 32px;
+  }
+  .content {
+    .bottom {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      .flexBlock {
+        padding: 32px;
+        & > div {
+          margin-bottom: 24px;
+          p {
+            margin-bottom: 8px;
+          }
+        }
+      }
+    }
+  }
+}

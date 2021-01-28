@@ -1,0 +1,51 @@
+.history {
+  background: #171717;
+  .pagination {
+    button {
+      background: #ffffff;
+      border-radius: 100px;
+      opacity: 0.2;
+      width: 44px;
+      height: 44px;
+      span {
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        color: #000000;
+      }
+      &[disabled] {
+        opacity: 1;
+      }
+    }
+  }
+  .historyTitle {
+    font-size: 40px;
+    line-height: 48px;
+    color: #ffffff;
+    padding: 32px 32px 64px 32px;
+  }
+  .mobileHistory {
+    .card {
+      height: 184px;
+      padding: 8px 32px 24px 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      p {
+        font-size: 20px;
+        line-height: 24px;
+        color: #ffffff;
+        &.grey {
+          opacity: 0.4;
+        }
+      }
+      .divideTwo {
+        float: left;
+        width: 50%;
+        & > div {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+}

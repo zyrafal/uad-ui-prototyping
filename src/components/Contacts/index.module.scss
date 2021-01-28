@@ -1,0 +1,92 @@
+$breakpoint-mobile: 335px;
+$breakpoint-tablet: 781px;
+$breakpoint-desktop: 1024px;
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+.contactsContainer {
+  .mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(40px);
+    z-index: 14;
+  }
+  .container {
+    height: 5000px;
+    position: absolute;
+    z-index: 15;
+    width: 50%;
+    right: 0;
+    overflow-y: scroll;
+    background: linear-gradient(
+        179.74deg,
+        #feb258 0.23%,
+        #b642e1 34.53%,
+        #e60419 67.2%,
+        #4b12b7 99.77%
+      ),
+      #c4c4c4;
+    .contacts {
+      color: #000000;
+      // min-height: 100%;
+      position: fixed;
+
+      & > p {
+        font-size: 40px;
+        line-height: 48px;
+        padding-top: 64px;
+        padding-left: 32px;
+      }
+    }
+  }
+  .contactItemContainer {
+    position: fixed;
+    cursor: pointer;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
+    width: 50%;
+    a {
+      text-decoration: none;
+    }
+    .CardItem {
+      &:hover {
+        filter: brightness(110%);
+        p {
+          color: rgba(0, 0, 0, 0.5);
+        }
+      }
+      padding-top: 13px;
+      padding-left: 32px;
+      height: 64px;
+      p {
+        color: black;
+        font-size: 40px;
+        line-height: 48px;
+      }
+    }
+  }
+}
+
+@include mobile {
+  .contactsContainer {
+    .contactItemContainer {
+      width: 100%;
+      .CardItem {
+        padding-top: 24px;
+        height: 96px;
+      }
+    }
+    .container {
+      width: 100%;
+      right: 0;
+      overflow-y: scroll;
+    }
+  }
+}

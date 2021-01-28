@@ -1,0 +1,146 @@
+$breakpoint-mobile: 335px;
+$breakpoint-tablet: 781px;
+$breakpoint-desktop: 1024px;
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+.clearBoth {
+  clear: both;
+}
+.HomeContainer {
+  width: 100%;
+  height: 100%;
+  padding-top: 5%;
+  .chart {
+    height: 22vh;
+    width: 100%;
+    position: relative;
+    img {
+      position: absolute;
+      &.lineimg {
+        width: 100%;
+        top: 70%;
+      }
+      &.vector {
+        width: 100%;
+        top: 5%;
+      }
+    }
+  }
+  .line {
+    width: 104px;
+    height: 0px;
+    left: 80px;
+    top: 588px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #ffffff;
+  }
+  .container {
+    margin-left: 32px;
+    margin-bottom: 30px;
+    font-style: normal;
+    font-weight: normal;
+    color: #ffffff;
+    p {
+      margin: 0;
+      font-size: 20px;
+      line-height: 24px;
+    }
+    .helloText {
+      font-size: 40px;
+      line-height: 58px;
+    }
+    .statics {
+      margin-top: 20px;
+      .offLine {
+        display: none;
+        width: 100px;
+        height: 0;
+        border: 1px solid #ffffff;
+      }
+      .item {
+        float: left;
+        margin-right: 30px;
+        margin-bottom: 20px;
+        h1 {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 19px;
+          color: #ffffff;
+          &:nth-child(1) {
+            color: #8e8e8e;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  .HomeContainer {
+    padding-top: 24px;
+    .container {
+      .helloText {
+        font-size: 48px;
+      }
+      margin: 32px;
+      margin-right: 150px;
+      margin-top: 0;
+
+      &:nth-child(3) {
+        display: none;
+      }
+      .statics {
+        position: absolute;
+        bottom: 133px;
+        .offLine {
+          display: block;
+          margin-bottom: 26px;
+        }
+        #epoch {
+          width: 100%;
+        }
+        .item {
+          h1 {
+            font-size: 20px;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+    .line {
+      display: none;
+    }
+    .chart {
+      display: none;
+    }
+  }
+}
+.noneStatics {
+  position: absolute;
+  .item {
+    margin-right: 30px;
+    margin-bottom: 20px;
+    h1 {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 24px;
+      color: #ffffff;
+      &:nth-child(1) {
+        color: #8e8e8e;
+      }
+    }
+    &:nth-child(2) {
+      float: left;
+    }
+    &:nth-child(3) {
+      float: left;
+    }
+  }
+}
