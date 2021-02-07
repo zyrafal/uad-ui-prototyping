@@ -12,17 +12,16 @@ const poolAbi = require("../constants/abi/Pool.json");
 const uniswapRouterAbi = require("../constants/abi/UniswapV2Router02.json");
 const uniswapPairAbi = require("../constants/abi/UniswapV2Pair.json");
 
-let web3;
 let provider;
 // eslint-disable-next-line no-undef
 if (window.ethereum !== undefined) {
   // eslint-disable-next-line no-undef
-  web3 = new Web3(ethereum);
   provider = new ethers.providers.Web3Provider(window.ethereum);
 }
 export const getPrice0CumulativeLast = async () => {
-  const price0 = new web3.eth.Contract(uniswapPairAbi, UNI.addr);
-  return price0.methods.price0CumulativeLast().call();
+  let signer = provider.getSigner();
+  const price0 = new ethers.Contract(UNI.addr, uniswapPairAbi, signer).queryFilter();
+  return price0.price0CumulativeLast();
 };
 /**
  *
@@ -32,13 +31,15 @@ export const getPrice0CumulativeLast = async () => {
  */
 export const getTokenBalance = async (token, account) => {
   if (account === "") return "0";
-  const tokenContract = new web3.eth.Contract(dollarAbi, token);
-  return tokenContract.methods.balanceOf(account).call();
+  let signer = provider.getSigner();
+  const tokenContract = new ethers.Contract(token, dollarAbi, signer);
+  return tokenContract.balanceOf(account);
 };
 
 export const getTokenTotalSupply = async (token) => {
-  const tokenContract = new web3.eth.Contract(dollarAbi, token);
-  return tokenContract.methods.totalSupply().call();
+  let signer = provider.getSigner();
+  const tokenContract = new ethers.Contract(token, dollarAbi, signer);
+  return tokenContract.totalSupply();
 };
 
 /**
@@ -49,8 +50,9 @@ export const getTokenTotalSupply = async (token) => {
  * @return {Promise<string>}
  */
 export const getTokenAllowance = async (token, account, spender) => {
-  const tokenContract = new web3.eth.Contract(dollarAbi, token);
-  return tokenContract.methods.allowance(account, spender).call();
+  let signer = provider.getSigner();
+  const tokenContract = new ethers.Contract(token, dollarAbi, signer);
+  return tokenContract.allowance(account, spender);
 };
 
 // Døllar Protocol
@@ -63,8 +65,9 @@ export const getTokenAllowance = async (token, account, spender) => {
  */
 export const getBalanceBonded = async (dao, account) => {
   if (account === "") return "0";
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.balanceOfBonded(account).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.balanceOfBonded(account);
 };
 
 /**
@@ -74,8 +77,9 @@ export const getBalanceBonded = async (dao, account) => {
  * @return {Promise<string>}
  */
 export const getBalanceOfStaged = async (dao, account) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.balanceOfStaged(account).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.balanceOfStaged(account);
 };
 
 /**
@@ -85,8 +89,9 @@ export const getBalanceOfStaged = async (dao, account) => {
  * @return {Promise<string>}
  */
 export const getStatusOf = async (dao, account) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.statusOf(account).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.statusOf(account);
 };
 
 /**
@@ -96,8 +101,9 @@ export const getStatusOf = async (dao, account) => {
  * @return {Promise<string>}
  */
 export const getFluidUntil = async (dao, account) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.fluidUntil(account).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.fluidUntil(account);
 };
 
 /**
@@ -107,8 +113,9 @@ export const getFluidUntil = async (dao, account) => {
  * @return {Promise<string>}
  */
 export const getLockedUntil = async (dao, account) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.lockedUntil(account).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.lockedUntil(account);
 };
 
 /**
@@ -117,8 +124,9 @@ export const getLockedUntil = async (dao, account) => {
  * @return {Promise<string>}
  */
 export const getEpoch = async (dao) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.epoch().call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.epoch();
 };
 
 /**
@@ -127,8 +135,9 @@ export const getEpoch = async (dao) => {
  * @return {Promise<string>}
  */
 export const getEpochTime = async (dao) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.epochTime().call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.epochTime();
 };
 
 /**
@@ -137,8 +146,9 @@ export const getEpochTime = async (dao) => {
  * @return {Promise<string>}
  */
 export const getTotalDebt = async (dao) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.totalDebt().call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.totalDebt();
 };
 
 /**
@@ -147,8 +157,9 @@ export const getTotalDebt = async (dao) => {
  * @return {Promise<string>}
  */
 export const getTotalRedeemable = async (dao) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.totalRedeemable().call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.totalRedeemable();
 };
 
 /**
@@ -157,8 +168,9 @@ export const getTotalRedeemable = async (dao) => {
  * @return {Promise<string>}
  */
 export const getTotalCoupons = async (dao) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.totalCoupons().call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.totalCoupons();
 };
 
 /**
@@ -167,8 +179,9 @@ export const getTotalCoupons = async (dao) => {
  * @return {Promise<string>}
  */
 export const getTotalBonded = async (dao) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.totalBonded().call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.totalBonded();
 };
 
 /**
@@ -177,8 +190,9 @@ export const getTotalBonded = async (dao) => {
  * @return {Promise<string>}
  */
 export const getTotalStaged = async (dao) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.totalStaged().call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.totalStaged();
 };
 
 /**
@@ -188,8 +202,9 @@ export const getTotalStaged = async (dao) => {
  * @return {Promise<string>}
  */
 export const getTotalBondedAt = async (dao, epoch) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.totalBondedAt(epoch).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.totalBondedAt(epoch);
 };
 
 /**
@@ -199,8 +214,9 @@ export const getTotalBondedAt = async (dao, epoch) => {
  * @return {Promise<string>}
  */
 export const getApproveFor = async (dao, candidate) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.approveFor(candidate).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.approveFor(candidate);
 };
 
 /**
@@ -210,8 +226,9 @@ export const getApproveFor = async (dao, candidate) => {
  * @return {Promise<string>}
  */
 export const getRejectFor = async (dao, candidate) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.rejectFor(candidate).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.rejectFor(candidate);
 };
 
 /**
@@ -221,8 +238,9 @@ export const getRejectFor = async (dao, candidate) => {
  * @return {Promise<string>}
  */
 export const getStartFor = async (dao, candidate) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.startFor(candidate).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.startFor(candidate);
 };
 
 /**
@@ -232,8 +250,9 @@ export const getStartFor = async (dao, candidate) => {
  * @return {Promise<string>}
  */
 export const getPeriodFor = async (dao, candidate) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.periodFor(candidate).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.periodFor(candidate);
 };
 
 /**
@@ -243,8 +262,9 @@ export const getPeriodFor = async (dao, candidate) => {
  * @return {Promise<boolean>}
  */
 export const getIsInitialized = async (dao, candidate) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.isInitialized(candidate).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.isInitialized(candidate);
 };
 
 /**
@@ -255,8 +275,9 @@ export const getIsInitialized = async (dao, candidate) => {
  * @return {Promise<string>}
  */
 export const getRecordedVote = async (dao, account, candidate) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.recordedVote(account, candidate).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.recordedVote(account, candidate);
 };
 
 /**
@@ -267,8 +288,9 @@ export const getRecordedVote = async (dao, account, candidate) => {
  * @return {Promise<string>}
  */
 export const getBalanceOfCoupons = async (dao, account, epoch) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.balanceOfCoupons(account, epoch).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.balanceOfCoupons(account, epoch);
 };
 
 /**
@@ -290,8 +312,9 @@ export const getBatchBalanceOfCoupons = async (dao, account, epochs) => {
  * @return {Promise<string>}
  */
 export const getOutstandingCoupons = async (dao, epoch) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.outstandingCoupons(epoch).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.outstandingCoupons(epoch);
 };
 
 /**
@@ -301,8 +324,9 @@ export const getOutstandingCoupons = async (dao, epoch) => {
  * @return {Promise<string>}
  */
 export const getCouponsExpiration = async (dao, epoch) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.couponsExpiration(epoch).call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.couponsExpiration(epoch);
 };
 
 /**
@@ -323,10 +347,10 @@ export const getBatchCouponsExpiration = async (dao, epochs) => {
  * @return {Promise<string>}
  */
 export const getCouponPremium = async (dao, amount) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods
-    .couponPremium(new BigNumber(amount).toFixed())
-    .call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract
+    .couponPremium(new BigNumber(amount).toFixed());
 };
 
 /**
@@ -335,8 +359,9 @@ export const getCouponPremium = async (dao, amount) => {
  * @return {Promise<string>}
  */
 export const getImplementation = async (dao) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.implementation().call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.implementation();
 };
 
 /**
@@ -345,8 +370,9 @@ export const getImplementation = async (dao) => {
  * @return {Promise<string>}
  */
 export const getPool = async (dao) => {
-  const daoContract = new web3.eth.Contract(daoAbi, dao);
-  return daoContract.methods.pool().call();
+  let signer = provider.getSigner();
+  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  return daoContract.pool();
 };
 
 /**
@@ -357,6 +383,7 @@ export const getPool = async (dao) => {
  */
 export const getCouponEpochs = async (dao, account) => {
   const daoContract = new web3.eth.Contract(daoAbi, dao);
+
   const purchaseP = daoContract.getPastEvents("CouponPurchase", {
     filter: { account },
     fromBlock: 0,
@@ -447,26 +474,27 @@ export const getAllRegulations = async (dao) => {
 // Uniswap Protocol
 
 export const getCost = async (amount) => {
-  const exchange = new web3.eth.Contract(uniswapRouterAbi, UniswapV2Router02);
+  let signer = provider.getSigner();
+  const exchange = new ethers.Contract(UniswapV2Router02, uniswapRouterAbi, signer);
   // eslint-disable-next-line no-unused-vars
-  const [inputAmount, _] = await exchange.methods
-    .getAmountsIn(new BigNumber(amount).toFixed(), [USDC.addr, ESD.addr])
-    .call();
+  const [inputAmount, _] = await exchange
+    .getAmountsIn(new BigNumber(amount).toFixed(), [USDC.addr, ESD.addr]);
   return inputAmount;
 };
 
 export const getProceeds = async (amount) => {
-  const exchange = new web3.eth.Contract(uniswapRouterAbi, UniswapV2Router02);
+  let signer = provider.getSigner();
+  const exchange = new ethers.Contract(UniswapV2Router02, uniswapRouterAbi, signer);
   // eslint-disable-next-line no-unused-vars
-  const [_, outputAmount] = await exchange.methods
-    .getAmountsOut(new BigNumber(amount).toFixed(), [ESD.addr, USDC.addr])
-    .call();
+  const [_, outputAmount] = await exchange
+    .getAmountsOut(new BigNumber(amount).toFixed(), [ESD.addr, USDC.addr]);
   return outputAmount;
 };
 
 export const getReserves = async () => {
-  const exchange = new web3.eth.Contract(uniswapPairAbi, UNI.addr);
-  return exchange.methods.getReserves().call();
+  let signer = provider.getSigner();
+  const exchange = new ethers.Contract(UNI.addr, uniswapPairAbi, signer);
+  return exchange.getReserves();
 };
 
 export const getInstantaneousPrice = async () => {
@@ -484,15 +512,17 @@ export const getInstantaneousPrice = async () => {
 };
 
 export const getToken0 = async () => {
-  const exchange = new web3.eth.Contract(uniswapPairAbi, UNI.addr);
-  return exchange.methods.token0().call();
+  let signer = provider.getSigner();
+  const exchange = new ethers.Contract(UNI.addr, uniswapPairAbi, signer);
+  return exchange.token0();
 };
 
 // Pool
 
 export const getPoolStatusOf = async (pool, account) => {
-  const poolContract = new web3.eth.Contract(poolAbi, pool);
-  return poolContract.methods.statusOf(account).call();
+  let signer = provider.getSigner();
+  const poolContract = new ethers.Contract(pool, poolAbi, signer);
+  return poolContract.statusOf(account);
 };
 
 /**
@@ -503,8 +533,9 @@ export const getPoolStatusOf = async (pool, account) => {
  */
 export const getPoolBalanceOfBonded = async (pool, account) => {
   if (account === "") return "0";
-  const poolContract = new web3.eth.Contract(poolAbi, pool);
-  return poolContract.methods.balanceOfBonded(account).call();
+  let signer = provider.getSigner();
+  const poolContract = new ethers.Contract(pool, poolAbi, signer);
+  return poolContract.balanceOfBonded(account);
 };
 
 /**
@@ -514,8 +545,9 @@ export const getPoolBalanceOfBonded = async (pool, account) => {
  * @return {Promise<string>}
  */
 export const getPoolBalanceOfStaged = async (pool, account) => {
-  const poolContract = new web3.eth.Contract(poolAbi, pool);
-  return poolContract.methods.balanceOfStaged(account).call();
+  let signer = provider.getSigner();
+  const poolContract = new ethers.Contract(pool, poolAbi, signer);
+  return poolContract.balanceOfStaged(account);
 };
 
 /**
@@ -526,8 +558,9 @@ export const getPoolBalanceOfStaged = async (pool, account) => {
  */
 export const getPoolBalanceOfRewarded = async (pool, account) => {
   if (account === "") return "0";
-  const poolContract = new web3.eth.Contract(poolAbi, pool);
-  return poolContract.methods.balanceOfRewarded(account).call();
+  let signer = provider.getSigner();
+  const poolContract = new ethers.Contract(pool, poolAbi, signer);
+  return poolContract.balanceOfRewarded(account);
 };
 
 /**
@@ -537,8 +570,9 @@ export const getPoolBalanceOfRewarded = async (pool, account) => {
  * @return {Promise<string>}
  */
 export const getPoolBalanceOfClaimable = async (pool, account) => {
-  const poolContract = new web3.eth.Contract(poolAbi, pool);
-  return poolContract.methods.balanceOfClaimable(account).call();
+  let signer = provider.getSigner();
+  const poolContract = new ethers.Contract(pool, poolAbi, signer);
+  return poolContract.balanceOfClaimable(account);
 };
 
 /**
@@ -548,8 +582,9 @@ export const getPoolBalanceOfClaimable = async (pool, account) => {
  * @return {Promise<string>}
  */
 export const getPoolTotalBonded = async (pool) => {
-  const poolContract = new web3.eth.Contract(poolAbi, pool);
-  return poolContract.methods.totalBonded().call();
+  let signer = provider.getSigner();
+  const poolContract = new ethers.Contract(pool, poolAbi, signer);
+  return poolContract.totalBonded();
 };
 
 /**
@@ -559,8 +594,9 @@ export const getPoolTotalBonded = async (pool) => {
  * @return {Promise<string>}
  */
 export const getPoolTotalRewarded = async (pool) => {
-  const poolContract = new web3.eth.Contract(poolAbi, pool);
-  return poolContract.methods.totalRewarded().call();
+  let signer = provider.getSigner();
+  const poolContract = new ethers.Contract(pool, poolAbi, signer);
+  return poolContract.totalRewarded();
 };
 
 /**
@@ -570,8 +606,9 @@ export const getPoolTotalRewarded = async (pool) => {
  * @return {Promise<string>}
  */
 export const getPoolTotalClaimable = async (pool) => {
-  const poolContract = new web3.eth.Contract(poolAbi, pool);
-  return poolContract.methods.totalClaimable().call();
+  let signer = provider.getSigner();
+  const poolContract = new ethers.Contract(pool, poolAbi, signer);
+  return poolContract.totalClaimable();
 };
 
 /**
