@@ -1,4 +1,5 @@
 import Web3 from "web3";
+import * as ethers from "ethers";
 
 import BigNumber from "bignumber.js";
 import { UniswapV2Router02 } from "../constants/contracts";
@@ -12,10 +13,12 @@ const uniswapRouterAbi = require("../constants/abi/UniswapV2Router02.json");
 const uniswapPairAbi = require("../constants/abi/UniswapV2Pair.json");
 
 let web3;
+let provider;
 // eslint-disable-next-line no-undef
 if (window.ethereum !== undefined) {
   // eslint-disable-next-line no-undef
   web3 = new Web3(ethereum);
+  provider = new ethers.providers.Web3Provider(window.ethereum);
 }
 export const getPrice0CumulativeLast = async () => {
   const price0 = new web3.eth.Contract(uniswapPairAbi, UNI.addr);

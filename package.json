@@ -11,6 +11,7 @@
 		"@testing-library/user-event": "^7.1.2",
 		"bignumber.js": "^9.0.0",
 		"classnames": "^2.2.6",
+		"ethers": "^5.0.29",
 		"moment": "^2.25.3",
 		"node-sass": "^4.0.0",
 		"react": "^16.12.0",
