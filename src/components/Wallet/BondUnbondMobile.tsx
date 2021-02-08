@@ -21,7 +21,7 @@ function BondUnbondMobile({ staged, bonded, status }: BondUnbondMobileProps) {
   const [showModal, setShowModal] = useState(false);
 
   const [integer, digits] = GetFromBigNumber(bonded);
-  const BondText = integer + "." + digits + " U8D";
+  const BondText = integer + "." + digits + " UAD";
   const clickStaged = () => {
     setShowModal(true);
   };
@@ -30,7 +30,6 @@ function BondUnbondMobile({ staged, bonded, status }: BondUnbondMobileProps) {
   };
 
   const handleUnbond = async () => {
-    console.log("123123132");
     await unbondUnderlying(ESDS.addr, toBaseUnitBN(unbondAmount, ESD.decimals));
   };
   const btnDisabled2 =
@@ -62,7 +61,7 @@ function BondUnbondMobile({ staged, bonded, status }: BondUnbondMobileProps) {
         <MobileCalcModal
           onClose={setShowModal}
           assets="Bonded "
-          prefix=" U8D"
+          prefix=" UAD"
           balance={staged}
           hasTab={true}
           depositAmount={bondAmount}

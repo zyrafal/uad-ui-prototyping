@@ -10,11 +10,11 @@ export const USDC = {
   symbol: 'USDC',
 };
 
-// rename ESD to U8D
+// rename ESD to UAD
 export const ESD = {
   addr: '0xa07ED1ABEbD717D817fd8684552f1B92EF024Ae4',
   decimals: 18,
-  symbol: 'U8D',
+  symbol: 'UAD',
 };
 
 // rename ESDS to U8DS

@@ -39,9 +39,9 @@ function HowToUse({ setHowToUse }: HowToUseProps) {
         <div className={styles.howtouse}>
           <p>Inform yourself</p>
           <p>
-            Universal Dollar (U8D) is an algorithmic decentralized stable coin
+            Universal Dollar (UAD) is an algorithmic decentralized stable coin
             based on the ERC-20 token built to be self-stabilizing. To start
-            using U8D and get benefits of decentralised finance read and proceed
+            using UAD and get benefits of decentralised finance read and proceed
             with the following steps.
           </p>
           <Card
@@ -53,15 +53,15 @@ function HowToUse({ setHowToUse }: HowToUseProps) {
 
           <Card
             number="2"
-            title="Buy U8D tokens"
-            content="Go to decentralized exchange, such as Uniswap, to acquire U8D tokens. To get the right links and the correct contract addresses, click the ‘Trade’ link in the menu"
+            title="Buy UAD tokens"
+            content="Go to decentralized exchange, such as Uniswap, to acquire UAD tokens. To get the right links and the correct contract addresses, click the ‘Trade’ link in the menu"
             bgColor="#B5B5B5"
           />
 
           <Card
             number="3"
             title="Bond in DAO or LP  "
-            content="Use U8D tokens to bond into DAO or to provide liquidity to the USDC-U8D pair on Uniswap"
+            content="Use UAD tokens to bond into DAO or to provide liquidity to the USDC-UAD pair on Uniswap"
             bgColor="#ABABAB"
           />
         </div>

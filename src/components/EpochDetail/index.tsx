@@ -50,7 +50,7 @@ function EpochDetail({
   return (
     <>
       <NavBar user={user} hasWeb3={hasWeb3} setUser={setUser}>
-        <p>Wallet 285.20 U8D</p>
+        <p>Wallet 285.20 UAD</p>
         <p>+ Trade on Uniswap</p>
       </NavBar>
       <IconHeader icon={<i className="fas fa-stream" />} text="Epoch" />

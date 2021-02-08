@@ -22,7 +22,7 @@ function ClaimMobile({ poolAddress, claimable }: ClaimMobileProps) {
   const [integer, digits] = GetFromBigNumber(claimable);
   const [showModal, setShowModal] = useState(false);
   const [claimSetting, setClaimSetting] = useState(false);
-  const stagedText = integer + "." + digits + " U8D";
+  const stagedText = integer + "." + digits + " UAD";
   const clickStaged = () => {
     setShowModal(true);
   };
@@ -67,7 +67,7 @@ function ClaimMobile({ poolAddress, claimable }: ClaimMobileProps) {
             <MobileCalcModal
               onClose={setShowModal}
               assets="Claimed "
-              prefix=" U8D"
+              prefix=" UAD"
               balance={claimable}
               hasTab={false}
               depositAmount={claimAmount}
@@ -109,7 +109,7 @@ function ClaimMobile({ poolAddress, claimable }: ClaimMobileProps) {
                         : parseFloat(
                             (claimAmount.toNumber() * 0.25).toFixed(3)
                           ).toString()}{" "}
-                      <span>U8D</span>)
+                      <span>UAD</span>)
                     </p>
                   </ModalBtn>
 

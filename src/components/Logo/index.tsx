@@ -20,7 +20,7 @@ function Logo({ user, showLine = false }: LogoProps) {
     <LinkBase onClick={() => history.push("/")} style={{ marginRight: "8px" }}>
       <div className={styles.logoUser}>
         <p className={user === "" ? styles.font24 : styles.font20}>
-          U8D{setUserFormat(user)}
+          UAD{setUserFormat(user)}
         </p>
         {user === "" && showLine && <div className={styles.logoRight}></div>}
       </div>

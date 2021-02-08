@@ -52,12 +52,12 @@ const Invest = ({
     <>
       <p>
         The supply will be expanded by{" "}
-        {BNtoText(totalSupply.multipliedBy(expRate))} U8D.
+        {BNtoText(totalSupply.multipliedBy(expRate))} UAD.
       </p>
       {user !== "" ? (
         <p>
           Returning {BNtoText(daohouly * 100)}% (
-          {BNtoText(bondedBalance.multipliedBy(daohouly))} U8D) on Bonded TVL &{" "}
+          {BNtoText(bondedBalance.multipliedBy(daohouly))} UAD) on Bonded TVL &{" "}
           {BNtoText(lpHourly * 100)}% (
           {BNtoText(
             poolLiquidity
@@ -66,7 +66,7 @@ const Invest = ({
                 ownership(poolBondedBalance, poolTotalBonded).dividedBy(100)
               )
           )}{" "}
-          U8D) on LP'd TVL.
+          UAD) on LP'd TVL.
         </p>
       ) : (
         <p>

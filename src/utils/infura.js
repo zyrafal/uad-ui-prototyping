@@ -447,7 +447,6 @@ export const getAllProposals = async (dao) => {
 export const getAllRegulations = async (dao) => {
   let signer = provider.getSigner();
   const daoContract = new ethers.Contract(dao, daoAbi, signer);
-
   const increaseFilter = daoContract.filters.SupplyIncrease();
   const increaseP = daoContract.queryFilter(increaseFilter, 0);
 

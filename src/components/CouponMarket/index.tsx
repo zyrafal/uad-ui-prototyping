@@ -166,7 +166,7 @@ function CouponMarket({
             <div className={styles.firstLine}>
               Total Debt
               <div>
-                <BigNumberPlainText asset="" balance={debt} suffix={" U8D"} />
+                <BigNumberPlainText asset="" balance={debt} suffix={" UAD"} />
               </div>
             </div>
             <div className={styles.firstLine}>
@@ -175,7 +175,7 @@ function CouponMarket({
                 <BigNumberPlainText
                   asset=""
                   balance={coupons}
-                  suffix={" U8D"}
+                  suffix={" UAD"}
                 />
               </div>
             </div>

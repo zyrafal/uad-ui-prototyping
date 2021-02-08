@@ -23,6 +23,13 @@ import { toTokenUnitsBN } from "../../utils/number";
 import BigNumber from "bignumber.js";
 import { formatBN } from "../../utils/number";
 import { getPoolAddress } from "../../utils/pool";
+import { checkConnectedAndGetAddress } from "../../utils/web3";
+
+declare global {
+    interface Window {
+        provider:any;
+    }
+}
 
 function epochTimeformatted() {
   const epochStart = 1611360000;
@@ -88,8 +95,10 @@ function HomePage({ hasWeb3, setUser, user, homeData }: HomePageProps) {
   useEffect(() => {
     let isCancelled = false;
     async function updateUserInfo() {
+      if (!window || !window.provider) {
+        return;
+      }
       const poolAddress = await getPoolAddress();
-
       const [
         allRegulations,
         totalSupplyStr,
@@ -199,7 +208,7 @@ function HomePage({ hasWeb3, setUser, user, homeData }: HomePageProps) {
               <h1>{epochTime}</h1>
             </div>
             <div className={styles.item}>
-              <h1>U8D Price</h1>
+              <h1>UAD Price</h1>
               <h1>${BNtoText(pairBalanceUSDC.dividedBy(pairBalanceESD))}</h1>
             </div>
             <div className={styles.item}>

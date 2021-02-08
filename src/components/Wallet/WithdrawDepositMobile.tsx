@@ -34,7 +34,7 @@ function WidthdrawDepositMobile({
   const [depositSetting, setDepositSetting] = useState(false);
   const [withdrawSetting, setWithdrawSetting] = useState(false);
   const [integer, digits] = GetFromBigNumber(stagedBalance);
-  const stagedText = integer + "." + digits + " U8D";
+  const stagedText = integer + "." + digits + " UAD";
   const btnDisabled1 =
     !isPos(depositAmount) || depositAmount.isGreaterThan(balance);
   const btnDisabled2 =
@@ -96,7 +96,7 @@ function WidthdrawDepositMobile({
           <MobileCalcModal
             onClose={setShowModal}
             assets="Staged "
-            prefix=" U8D"
+            prefix=" UAD"
             balance={balance}
             hasTab={true}
             depositAmount={depositAmount}
@@ -192,7 +192,7 @@ function WidthdrawDepositMobile({
                       : parseFloat(
                           (withdrawAmount.toNumber() * 0.25).toFixed(3)
                         ).toString()}{" "}
-                    <span>U8D</span>)
+                    <span>UAD</span>)
                   </p>
                 </ModalBtn>
 

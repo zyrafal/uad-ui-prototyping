@@ -145,7 +145,7 @@ const RegulationInfo = ({
             <p>{epochTime}</p>
           </div>
           <div className={styles.item}>
-            <p>U8D Price</p>
+            <p>UAD Price</p>
             <p>${BNtoText(pairBalanceUSDC.dividedBy(pairBalanceESD))}</p>
           </div>
         </div>

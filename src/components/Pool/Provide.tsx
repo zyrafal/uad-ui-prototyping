@@ -51,8 +51,8 @@ function Provide({
   );
   let [integer, digits] = GetFromBigNumber(rewarded);
 
-  const Rewarded = "Rewarded " + integer + "." + digits + " U8D";
-  const maxReward = "U8D " + integer + "." + digits;
+  const Rewarded = "Rewarded " + integer + "." + digits + " UAD";
+  const maxReward = "UAD " + integer + "." + digits;
   [integer, digits] = GetFromBigNumber(userUSDCBalance);
   const maxUSDC = "USDC " + integer + "." + digits;
   const handleUnlockBtn = async () => {
@@ -178,7 +178,7 @@ function Provide({
                   }}
                 >
                   <span style={{ opacity: "0.4", marginRight: "5px" }}>
-                    {"U8D->USDC"}
+                    {"UAD->USDC"}
                   </span>
                   <span style={{ opacity: "0.4" }}>{BNtoText(usdcAmount)}</span>
                 </span>

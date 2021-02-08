@@ -45,7 +45,7 @@ function TradeMobile({ pairBalanceUSDC, pairBalanceESD }: TradeMobileProps) {
         <p>Trade</p>
         <div className={styles.tradeInfo}>
           <div className={styles.tradeInfoCard}>
-            <div className={styles.title}>U8D Price</div>
+            <div className={styles.title}>UAD Price</div>
             <div className={styles.content}>
               <BigNumberPlainText
                 asset="$"
@@ -63,12 +63,12 @@ function TradeMobile({ pairBalanceUSDC, pairBalanceESD }: TradeMobileProps) {
             }}
           >
             <div className={styles.tradeInfoCard}>
-              <div className={styles.title}>U8D Liquidity</div>
+              <div className={styles.title}>UAD Liquidity</div>
               <div className={styles.content}>
                 <BigNumberPlainText
                   asset=""
                   balance={pairBalanceESD}
-                  suffix=" U8D"
+                  suffix=" UAD"
                 />
               </div>
             </div>
@@ -107,7 +107,7 @@ function TradeMobile({ pairBalanceUSDC, pairBalanceESD }: TradeMobileProps) {
 
       <TradeCard href={u8d} bgColor="#CACACA">
         <div className={styles.contractCard}>
-          <p>U8D Token</p>
+          <p>UAD Token</p>
           <p>{setUserFormat(ESD.addr)}</p>
         </div>
       </TradeCard>

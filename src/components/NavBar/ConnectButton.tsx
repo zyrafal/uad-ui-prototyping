@@ -174,7 +174,7 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
                     <BigNumberPlainText
                       asset=""
                       balance={userBondedBalance}
-                      suffix={"U8D ("}
+                      suffix={"UAD ("}
                     />
 
                     <BigNumberPlainText
@@ -189,7 +189,7 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
                   <BigNumberPlainText
                     asset=""
                     balance={userESDBalance}
-                    suffix={" U8D"}
+                    suffix={" UAD"}
                   />
                 </div>
               </div>
@@ -231,7 +231,7 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
                   <BigNumberPlainText
                     asset=""
                     balance={userRewardedBalance}
-                    suffix={" U8D"}
+                    suffix={" UAD"}
                   />
                 </div>
               </div>
@@ -250,7 +250,7 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
                   <BigNumberPlainText
                     asset=""
                     balance={coupons}
-                    suffix={" U8D"}
+                    suffix={" UAD"}
                   />
                 </div>
               </div>
@@ -266,7 +266,7 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
           />
           <div onClick={toggleModal} className={styles.beforeConnect}>
             <p style={{ marginBottom: "8px" }}>Connect Wallet</p>
-            <p>To start participating in the U8D ecosystem</p>
+            <p>To start participating in the UAD ecosystem</p>
             <img alt="" src="images/icons8-connected 2.svg" />
           </div>
         </>

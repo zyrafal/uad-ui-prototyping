@@ -51,7 +51,7 @@ function PurchaseCouponModal({
           <BigNumberPlainText
             asset="Balance"
             balance={balance}
-            suffix={" U8D"}
+            suffix={" UAD"}
           />
         </div>
       </div>
@@ -66,7 +66,7 @@ function PurchaseCouponModal({
                   ? updatePremium(value)
                   : updatePremium(new BigNumber(0));
               }}
-              placeholder="0.000000 U8D"
+              placeholder="0.000000 UAD"
               border={false}
             >
               <span
@@ -76,7 +76,7 @@ function PurchaseCouponModal({
                   color: "rgba(255,255,255,0.4)",
                 }}
               >
-                U8D
+                UAD
               </span>
             </NumberInput>
             <div style={{ marginTop: "80px" }}>
