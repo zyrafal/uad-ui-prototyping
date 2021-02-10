@@ -7,6 +7,8 @@ import { ESD, UNI, USDC } from "../constants/tokens";
 import { POOL_EXIT_LOCKUP_EPOCHS } from "../constants/values";
 
 const dollarAbi = require("../constants/abi/Dollar.json");
+const bondingAbi = require("../constants/abi/Bonding.json");
+const bondingShareAbi = require("../constants/abi/BondingShare.json");
 const daoAbi = require("../constants/abi/Implementation.json");
 const poolAbi = require("../constants/abi/Pool.json");
 const uniswapRouterAbi = require("../constants/abi/UniswapV2Router02.json");
@@ -55,6 +57,20 @@ export const getTokenAllowance = async (token, account, spender) => {
   return dollarContract.allowance(account, spender);
 };
 
+/**
+ *
+ * @param {string} token
+ * @param {string} account
+ * @param {string} spender
+ * @return {Promise<string>}
+ */
+export const getBondTokenAllowance = async (token, account, spender) => {
+  let signer = provider.getSigner();
+  const bondingShareContract = new ethers.Contract(token, bondingShareAbi, signer);
+  return bondingShareContract.allowance(account, spender);
+};
+
+
 // Døllar Protocol
 
 /**
@@ -66,8 +82,8 @@ export const getTokenAllowance = async (token, account, spender) => {
 export const getBalanceBonded = async (dao, account) => {
   if (account === "") return "0";
   let signer = provider.getSigner();
-  const dollarContract = new ethers.Contract(dao, dollarAbi, signer);
-  return dollarContract.balanceOfBonded(account);
+  const bondingShareContract = new ethers.Contract(dao, bondingShareAbi, signer);
+  return bondingShareContract.balanceOf(account);
 };
 
 /**
@@ -78,7 +94,7 @@ export const getBalanceBonded = async (dao, account) => {
  */
 export const getBalanceOfStaged = async (dao, account) => {
   let signer = provider.getSigner();
-  const dollarContract = new ethers.Contract(dao, dollarAbi, signer);
+  const dollarContract = new ethers.Contract(dao, bondingAbi, signer);
   return dollarContract.balanceOfStaged(account);
 };
 
@@ -180,8 +196,8 @@ export const getTotalCoupons = async (dao) => {
  */
 export const getTotalBonded = async (dao) => {
   let signer = provider.getSigner();
-  const daoContract = new ethers.Contract(dao, daoAbi, signer);
-  return daoContract.totalBonded();
+  const bondingShareContract = new ethers.Contract(dao, bondingShareAbi, signer);
+  return bondingShareContract.totalSupply();
 };
 
 /**

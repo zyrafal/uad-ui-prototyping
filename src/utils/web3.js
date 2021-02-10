@@ -3,10 +3,14 @@ import * as ethers from "ethers";
 import BigNumber from "bignumber.js";
 
 import { notify } from "./txNotifier.ts";
+
+import { toTokenUnitsBN } from "../utils/number";
 import { UniswapV2Router02 } from "../constants/contracts";
 
-import { ESD, USDC } from "../constants/tokens";
+import { ESD, USDC, BOND } from "../constants/tokens";
 
+const bondingAbi = require("../constants/abi/Bonding.json");
+const bondingShareAbi = require("../constants/abi/BondingShare.json");
 const uniswapRouterAbi = require("../constants/abi/UniswapV2Router02.json");
 const testnetUSDCAbi = require("../constants/abi/TestnetUSDC.json");
 const daoAbi = require("../constants/abi/Implementation.json");
@@ -551,19 +555,14 @@ export const unreleasedRewardAmount = async (pool) => {
 };
 
 export const bond = async (dao, amount) => {
-  const account = await checkConnectedAndGetAddress();
+  // const account = await checkConnectedAndGetAddress();
   let signer = window.provider.getSigner();
-  const daoContract = new ethers.Contract(dao, daoAbi, signer);
-
+  const bondingContract = new ethers.Contract(dao, bondingAbi, signer);
   try {
-    const tx = await daoContract
-      .bond(new BigNumber(amount).toFixed(), {
-        from: account,
-      });
-    await tx.wait();
-    notify.hash(tx.hash);
+    await bondingContract
+      .bondTokens(toTokenUnitsBN(amount.toString(), BOND.decimals).toNumber());
   } catch (error) {
-    
+    console.log(error);
   }
 };
 

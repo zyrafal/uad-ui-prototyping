@@ -4,7 +4,7 @@ import BigNumber from "bignumber.js";
 import { BoxItemTextBlock, MaxButton } from "../common/index";
 import { bond, unbondUnderlying } from "../../utils/web3";
 import { isPos, toBaseUnitBN } from "../../utils/number";
-import { ESD, ESDS } from "../../constants/tokens";
+import { ESD, ESDS, BOND } from "../../constants/tokens";
 import NumberInput from "../common/NumberInput";
 import Box from "../../components/Box";
 import BoxItem from "../../components/BoxItem";
@@ -46,12 +46,11 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
               wide
               label="+ Bond"
               onClick={async () => {
-                await bond(ESDS.addr, toBaseUnitBN(bondAmount, ESD.decimals));
+                await bond(BOND.addr, toBaseUnitBN(bondAmount, BOND.decimals));
               }}
               disabled={
                 status === 1 ||
-                !isPos(bondAmount) ||
-                bondAmount.isGreaterThan(staged)
+                !isPos(bondAmount)
               }
             />
           </NumberInput>

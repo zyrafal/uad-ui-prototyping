@@ -7,10 +7,11 @@ import {
   getBalanceOfStaged,
   getStatusOf,
   getTokenAllowance,
+  getBondTokenAllowance,
   getTokenBalance,
   getTokenTotalSupply,
 } from "../../utils/infura";
-import { ESD, ESDS } from "../../constants/tokens";
+import { ESD, ESDS, BOND, UBOND } from "../../constants/tokens";
 import { toTokenUnitsBN } from "../../utils/number";
 import NavBar from "../../components/NavBar";
 import {
@@ -86,17 +87,16 @@ function Wallet({
       const [
         esdBalance,
         esdAllowance,
-        // stagedBalance,
-        // bondedBalance,
+        bondedBalance,
         // status,
         // unreleasedValue,
         stakeStr,
         totalStakeStr,
       ] = await Promise.all([
         getTokenBalance(ESD.addr, user),
-        getTokenAllowance(ESD.addr, user, ESDS.addr),
+        getBondTokenAllowance(UBOND.addr, user, ESD.addr),
         // getBalanceOfStaged(ESDS.addr, user),
-        // getBalanceBonded(ESDS.addr, user),
+        getBalanceBonded(UBOND.addr, user),
         // getStatusOf(ESDS.addr, user),
         // unreleasedAmount(ESDS.addr),
         getTokenBalance(ESD.addr, user),
@@ -104,7 +104,7 @@ function Wallet({
       ]);
       const userESDBalance = toTokenUnitsBN(esdBalance.toString(), ESD.decimals);
       const userStagedBalance = toTokenUnitsBN("0", ESDS.decimals);
-      const userBondedBalance = toTokenUnitsBN("0", ESDS.decimals);
+      const userBondedBalance = toTokenUnitsBN(bondedBalance.toString(), BOND.decimals);
       const userStatus = parseInt("0", 10);
       if (!isCancelled) {
         setUserESDBalance(new BigNumber(userESDBalance));
@@ -115,6 +115,7 @@ function Wallet({
         setUserStatus(userStatus);
       }
       // setUserUnreleasedValue(unreleasedValue);
+      console.log(esdAllowance.toString())
       if (new BigNumber(esdAllowance.toString()).comparedTo(MAX_UINT256) === 0) {
         SetUnlockBtn(true);
       }
