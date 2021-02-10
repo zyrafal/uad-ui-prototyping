@@ -143,7 +143,7 @@ function ProvideMobile({
               <BoxItemTextBlock
                 fontSize="32px"
                 color="#ffffff"
-                asset={Rewarded + " UAD"}
+                asset={Rewarded + " uAD"}
               />
             </BoxItem>
           </div>
@@ -166,7 +166,7 @@ function ProvideMobile({
           <MobileCalcModal
             onClose={setShowModal}
             assets="Rewarded "
-            prefix=" UAD"
+            prefix=" uAD"
             balance={rewarded}
             hasTab={false}
             depositAmount={provideAmount}
@@ -206,7 +206,7 @@ function ProvideMobile({
                   }}
                 >
                   <span>
-                    UAD <span>{Rewarded}</span>
+                    uAD <span>{Rewarded}</span>
                   </span>
                 </div>
                 <div

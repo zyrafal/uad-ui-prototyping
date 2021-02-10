@@ -174,7 +174,7 @@ function Regulation({
             <div className={styles.firstLine}>
               Wallet
               <div>
-                <BigNumberPlainText asset="" balance={0} suffix={" UAD"} />
+                <BigNumberPlainText asset="" balance={0} suffix={" uAD"} />
               </div>
             </div>
           </div>

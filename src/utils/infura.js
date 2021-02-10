@@ -32,13 +32,13 @@ export const getPrice0CumulativeLast = async () => {
 export const getTokenBalance = async (token, account) => {
   if (account === "") return "0";
   let signer = provider.getSigner();
-  const tokenContract = new ethers.Contract(token, dollarAbi, signer);
+  const tokenContract = new ethers.Contract(token, daoAbi, signer);
   return tokenContract.balanceOf(account);
 };
 
 export const getTokenTotalSupply = async (token) => {
   let signer = provider.getSigner();
-  const tokenContract = new ethers.Contract(token, dollarAbi, signer);
+  const tokenContract = new ethers.Contract(token, daoAbi, signer);
   return tokenContract.totalSupply();
 };
 
@@ -51,7 +51,7 @@ export const getTokenTotalSupply = async (token) => {
  */
 export const getTokenAllowance = async (token, account, spender) => {
   let signer = provider.getSigner();
-  const tokenContract = new ethers.Contract(token, dollarAbi, signer);
+  const tokenContract = new ethers.Contract(token, daoAbi, signer);
   return tokenContract.allowance(account, spender);
 };
 
@@ -371,7 +371,9 @@ export const getImplementation = async (dao) => {
  */
 export const getPool = async (dao) => {
   let signer = provider.getSigner();
+  console.log(dao);
   const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  console.log(daoContract);
   return daoContract.pool();
 };
 

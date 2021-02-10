@@ -56,7 +56,7 @@ function PurchaseCoupons({
           <BigNumberPlainText
             asset="Balance"
             balance={balance}
-            suffix={" UAD"}
+            suffix={" uAD"}
           />
         </div>
         <div>
@@ -68,7 +68,7 @@ function PurchaseCoupons({
                 ? updatePremium(value)
                 : updatePremium(new BigNumber(0));
             }}
-            placeholder="0.000000 UAD"
+            placeholder="0.000000 uAD"
           >
             <Button
               style={{

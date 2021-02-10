@@ -43,7 +43,7 @@ function StreamMobile({
   cancelStream,
   addr,
   decimals,
-  prefix = "UAD",
+  prefix = "uAD",
   roundable = true,
 }: StreamMobileProps) {
   const [leftTime, setLeftTime] = useState(0);

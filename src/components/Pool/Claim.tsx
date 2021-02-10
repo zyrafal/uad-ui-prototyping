@@ -33,7 +33,7 @@ function Claim({ poolAddress, claimable }: ClaimProps) {
     }
     setWithdrawSetting(false);
   };
-  const stagedText = "Claimable " + integer + "." + digits + " UAD";
+  const stagedText = "Claimable " + integer + "." + digits + " uAD";
   return (
     <Box bgcolor="#282828" height="288px">
       <BoxItem>
@@ -42,7 +42,7 @@ function Claim({ poolAddress, claimable }: ClaimProps) {
           <NumberInput
             value={claimAmount}
             setter={setClaimAmount}
-            placeholder="0.000000 UAD"
+            placeholder="0.000000 uAD"
           >
             <Button
               style={{
@@ -103,7 +103,7 @@ function Claim({ poolAddress, claimable }: ClaimProps) {
                     : parseFloat(
                         (claimAmount.toNumber() * 0.25).toFixed(3)
                       ).toString()}{" "}
-                  <span>UAD</span>)
+                  <span>uAD</span>)
                 </p>
               </ModalBtn>
 

@@ -65,7 +65,7 @@ function PurchaseCouponsMobile({
               <BigNumberPlainText
                 asset="Balance"
                 balance={balance}
-                suffix={" UAD"}
+                suffix={" uAD"}
                 color="white"
               />
             </div>

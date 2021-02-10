@@ -99,6 +99,7 @@ function HomePage({ hasWeb3, setUser, user, homeData }: HomePageProps) {
         return;
       }
       const poolAddress = await getPoolAddress();
+      console.log(poolAddress)
       const [
         allRegulations,
         totalSupplyStr,
@@ -208,7 +209,7 @@ function HomePage({ hasWeb3, setUser, user, homeData }: HomePageProps) {
               <h1>{epochTime}</h1>
             </div>
             <div className={styles.item}>
-              <h1>UAD Price</h1>
+              <h1>uAD Price</h1>
               <h1>${BNtoText(pairBalanceUSDC.dividedBy(pairBalanceESD))}</h1>
             </div>
             <div className={styles.item}>

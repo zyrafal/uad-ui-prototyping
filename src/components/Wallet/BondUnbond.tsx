@@ -20,7 +20,7 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
   const [unbondAmount, setUnbondAmount] = useState(new BigNumber(0));
 
   const [integer, digits] = GetFromBigNumber(bonded);
-  const BondText = "Bond " + integer + "." + digits + " UAD";
+  const BondText = "Bond " + integer + "." + digits + " uAD";
 
   return (
     <Box bgcolor="#171717" height="288px">
@@ -28,7 +28,7 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
         <BoxItemTextBlock fontSize="20px" color="#ffffff" asset={BondText} />
         <div>
           <NumberInput
-            placeholder="0.000000 UAD"
+            placeholder="0.000000 uAD"
             value={bondAmount}
             setter={setBondAmount}
           >
@@ -72,7 +72,7 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
         />
         <div>
           <NumberInput
-            placeholder="0.000000 UAD"
+            placeholder="0.000000 uAD"
             value={unbondAmount}
             setter={setUnbondAmount}
           >

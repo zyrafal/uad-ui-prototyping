@@ -33,7 +33,7 @@ function WithdrawDeposit({
   const [depositAmount, setDepositAmount] = useState(new BigNumber(0));
   const [withdrawAmount, setWithdrawAmount] = useState(new BigNumber(0));
   const [integer, digits] = GetFromBigNumber(stagedBalance);
-  const stagedText = "Staged " + integer + "." + digits + " UAD";
+  const stagedText = "Staged " + integer + "." + digits + " uAD";
   const [depositSetting, setDepositSetting] = useState(false);
   const [withdrawSetting, setWithdrawSetting] = useState(false);
 
@@ -67,7 +67,7 @@ function WithdrawDeposit({
           <NumberInput
             value={depositAmount}
             setter={setDepositAmount}
-            placeholder="0.000000 UAD"
+            placeholder="0.000000 uAD"
             disabled={status !== 0}
           >
             <Button
@@ -110,7 +110,7 @@ function WithdrawDeposit({
           <NumberInput
             value={withdrawAmount}
             setter={setWithdrawAmount}
-            placeholder="0.000000 UAD"
+            placeholder="0.000000 uAD"
             disabled={status !== 0}
           >
             <Button
@@ -241,7 +241,7 @@ function WithdrawDeposit({
                     : parseFloat(
                         (withdrawAmount.toNumber() * 0.25).toFixed(3)
                       ).toString()}{" "}
-                  <span>UAD</span>)
+                  <span>uAD</span>)
                 </p>
               </ModalBtn>
 

@@ -42,7 +42,7 @@ function Streaming({
   cancelStream,
   addr,
   decimals,
-  prefix = "UAD",
+  prefix = "uAD",
   roundable = true,
 }: StreamingProps) {
   const [leftTime, setLeftTime] = useState(0);

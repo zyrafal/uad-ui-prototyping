@@ -249,7 +249,7 @@ function Pool({
                 <BigNumberPlainText
                   asset=""
                   balance={userRewardedBalance}
-                  suffix={" UAD"}
+                  suffix={" uAD"}
                 />
               </div>
             </div>

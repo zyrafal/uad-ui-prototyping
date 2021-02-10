@@ -160,7 +160,7 @@ function Wallet({
                 <BigNumberPlainText
                   asset=""
                   balance={userESDBalance}
-                  suffix={" UAD"}
+                  suffix={" uAD"}
                 />
               </div>
             </div>
@@ -171,7 +171,7 @@ function Wallet({
                 <BigNumberPlainText
                   asset=""
                   balance={userBondedBalance}
-                  suffix={" UAD (" + integer + "." + digits + "%)"}
+                  suffix={" uAD (" + integer + "." + digits + "%)"}
                 />
               </div>
             </div>
@@ -203,7 +203,7 @@ function Wallet({
           }}
         >
           <div className={styles.title}>Stage</div>
-          <div className={styles.unlockBtn}>+ Unlock UAD</div>
+          <div className={styles.unlockBtn}>+ Unlock uAD</div>
         </div>
       )}
       {unlockBtn && (

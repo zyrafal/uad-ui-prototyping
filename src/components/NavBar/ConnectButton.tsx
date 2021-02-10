@@ -108,6 +108,8 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
         unreleasedRewardAmount(poolAddressStr),
         getBalanceBonded(ESDS.addr, user),
       ]);
+      console.log('esdBalance')
+      console.log(esdBalance)
       const userESDBalance = toTokenUnitsBN(esdBalance, ESD.decimals);
       const userPoolBondedBalance = toTokenUnitsBN(
         poolBondedBalance,
@@ -174,7 +176,7 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
                     <BigNumberPlainText
                       asset=""
                       balance={userBondedBalance}
-                      suffix={"UAD ("}
+                      suffix={"uAD ("}
                     />
 
                     <BigNumberPlainText
@@ -189,7 +191,7 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
                   <BigNumberPlainText
                     asset=""
                     balance={userESDBalance}
-                    suffix={" UAD"}
+                    suffix={" uAD"}
                   />
                 </div>
               </div>
@@ -231,7 +233,7 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
                   <BigNumberPlainText
                     asset=""
                     balance={userRewardedBalance}
-                    suffix={" UAD"}
+                    suffix={" uAD"}
                   />
                 </div>
               </div>
@@ -250,7 +252,7 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
                   <BigNumberPlainText
                     asset=""
                     balance={coupons}
-                    suffix={" UAD"}
+                    suffix={" uAD"}
                   />
                 </div>
               </div>
@@ -266,7 +268,7 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
           />
           <div onClick={toggleModal} className={styles.beforeConnect}>
             <p style={{ marginBottom: "8px" }}>Connect Wallet</p>
-            <p>To start participating in the UAD ecosystem</p>
+            <p>To start participating in the uAD ecosystem</p>
             <img alt="" src="images/icons8-connected 2.svg" />
           </div>
         </>

@@ -20,7 +20,7 @@ function BondUnbond({ poolAddress, staged, bonded }: BondUnbondProps) {
   const [bondAmount, setBondAmount] = useState(new BigNumber(0));
   const [unbondAmount, setUnbondAmount] = useState(new BigNumber(0));
   const [integer, digits] = GetFromBigNumber(bonded);
-  const BondText = "Bonded " + integer + "." + digits + " UAD";
+  const BondText = "Bonded " + integer + "." + digits + " uAD";
   return (
     <Box bgcolor="#171717" height="288px">
       <BoxItem>

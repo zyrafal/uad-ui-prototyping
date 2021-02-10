@@ -134,7 +134,7 @@ function Candidate({
   return (
     <>
       <NavBar user={user} hasWeb3={hasWeb3} setUser={setUser}>
-        <p>Wallet 285.20 UAD</p>
+        <p>Wallet 285.20 uAD</p>
         <p>+ Trade on Uniswap</p>
       </NavBar>
       <IconHeader icon={<i className="fas fa-poll" />} text="Candidate" />

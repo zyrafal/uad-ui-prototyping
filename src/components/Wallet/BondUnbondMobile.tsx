@@ -21,7 +21,7 @@ function BondUnbondMobile({ staged, bonded, status }: BondUnbondMobileProps) {
   const [showModal, setShowModal] = useState(false);
 
   const [integer, digits] = GetFromBigNumber(bonded);
-  const BondText = integer + "." + digits + " UAD";
+  const BondText = integer + "." + digits + " uAD";
   const clickStaged = () => {
     setShowModal(true);
   };
@@ -61,7 +61,7 @@ function BondUnbondMobile({ staged, bonded, status }: BondUnbondMobileProps) {
         <MobileCalcModal
           onClose={setShowModal}
           assets="Bonded "
-          prefix=" UAD"
+          prefix=" uAD"
           balance={staged}
           hasTab={true}
           depositAmount={bondAmount}

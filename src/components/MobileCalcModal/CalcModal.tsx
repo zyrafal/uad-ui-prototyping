@@ -66,7 +66,7 @@ function CalcModal({
               }}
             >
               <span style={{ opacity: "0.4", marginRight: "5px" }}>
-                {"UAD->USDC"}
+                {"uAD->USDC"}
               </span>
               <span style={{ opacity: "0.4" }}>{usdcAmount}</span>
             </span>
