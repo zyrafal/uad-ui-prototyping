@@ -14,7 +14,7 @@ export const USDC = {
 export const ESD = {
   addr: '0xf693f8cf0e923dc6866f3aaef414356b8b8a94f3',
   decimals: 18,
-  symbol: 'UAD',
+  symbol: 'uAD',
 };
 
 // rename ESDS to U8DS

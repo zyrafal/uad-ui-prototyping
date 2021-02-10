@@ -86,36 +86,36 @@ function Wallet({
       const [
         esdBalance,
         esdAllowance,
-        stagedBalance,
-        bondedBalance,
-        status,
-        unreleasedValue,
+        // stagedBalance,
+        // bondedBalance,
+        // status,
+        // unreleasedValue,
         stakeStr,
         totalStakeStr,
       ] = await Promise.all([
         getTokenBalance(ESD.addr, user),
         getTokenAllowance(ESD.addr, user, ESDS.addr),
-        getBalanceOfStaged(ESDS.addr, user),
-        getBalanceBonded(ESDS.addr, user),
-        getStatusOf(ESDS.addr, user),
-        unreleasedAmount(ESDS.addr),
-        getTokenBalance(ESDS.addr, user),
-        getTokenTotalSupply(ESDS.addr),
+        // getBalanceOfStaged(ESDS.addr, user),
+        // getBalanceBonded(ESDS.addr, user),
+        // getStatusOf(ESDS.addr, user),
+        // unreleasedAmount(ESDS.addr),
+        getTokenBalance(ESD.addr, user),
+        getTokenTotalSupply(ESD.addr),
       ]);
-      const userESDBalance = toTokenUnitsBN(esdBalance, ESD.decimals);
-      const userStagedBalance = toTokenUnitsBN(stagedBalance, ESDS.decimals);
-      const userBondedBalance = toTokenUnitsBN(bondedBalance, ESDS.decimals);
-      const userStatus = parseInt(status, 10);
+      const userESDBalance = toTokenUnitsBN(esdBalance.toString(), ESD.decimals);
+      const userStagedBalance = toTokenUnitsBN("0", ESDS.decimals);
+      const userBondedBalance = toTokenUnitsBN("0", ESDS.decimals);
+      const userStatus = parseInt("0", 10);
       if (!isCancelled) {
         setUserESDBalance(new BigNumber(userESDBalance));
         setUserStagedBalance(new BigNumber(userStagedBalance));
         setUserBondedBalance(new BigNumber(userBondedBalance));
-        setTotalStake(toTokenUnitsBN(totalStakeStr, ESDS.decimals));
-        setStake(toTokenUnitsBN(stakeStr, ESDS.decimals));
+        setTotalStake(toTokenUnitsBN(totalStakeStr.toString(), ESDS.decimals));
+        setStake(toTokenUnitsBN(stakeStr.toString(), ESDS.decimals));
         setUserStatus(userStatus);
       }
-      setUserUnreleasedValue(unreleasedValue);
-      if (new BigNumber(esdAllowance).comparedTo(MAX_UINT256) === 0) {
+      // setUserUnreleasedValue(unreleasedValue);
+      if (new BigNumber(esdAllowance.toString()).comparedTo(MAX_UINT256) === 0) {
         SetUnlockBtn(true);
       }
     }
@@ -210,11 +210,6 @@ function Wallet({
         <div className={styles.container}>
           {!isMobile && (
             <>
-              <WithdrawDeposit
-                balance={userESDBalance}
-                stagedBalance={userStagedBalance}
-                status={userStatus}
-              />
               {userUnreleasedValue > 0 && (
                 <Streaming
                   streamTimeleft={streamTimeleft}

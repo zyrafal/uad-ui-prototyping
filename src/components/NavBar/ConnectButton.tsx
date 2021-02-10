@@ -82,56 +82,18 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
     }
     let isCancelled = false;
     async function updateUserInfo() {
-      const poolAddressStr = await getPoolAddress();
       const [
-        totalStakeStr,
-        stakeStr,
         esdBalance,
-        poolBondedBalance,
-        poolTotalBondedStr,
-        rewardedBalance,
-        couponsStr,
-        unreleasedValue,
-        unreleasedLpValue,
-        unreleasedRewardValue,
-        bondedBalance,
       ] = await Promise.all([
-        getTokenTotalSupply(ESDS.addr),
-        getTokenBalance(ESDS.addr, user),
         getTokenBalance(ESD.addr, user),
-        getPoolBalanceOfBonded(poolAddressStr, user),
-        getPoolTotalBonded(poolAddressStr),
-        getPoolBalanceOfRewarded(poolAddressStr, user),
-        getTotalCoupons(ESDS.addr),
-        unreleasedAmount(ESDS.addr),
-        unreleasedLpAmount(poolAddressStr),
-        unreleasedRewardAmount(poolAddressStr),
-        getBalanceBonded(ESDS.addr, user),
       ]);
-      console.log('esdBalance')
-      console.log(esdBalance)
-      const userESDBalance = toTokenUnitsBN(esdBalance, ESD.decimals);
-      const userPoolBondedBalance = toTokenUnitsBN(
-        poolBondedBalance,
-        UNI.decimals
-      );
-      setUserBondedBalance(toTokenUnitsBN(bondedBalance, ESDS.decimals));
-
-      const poolTotalBonded = toTokenUnitsBN(poolTotalBondedStr, ESD.decimals);
-      const totalCoupons = toTokenUnitsBN(couponsStr, ESD.decimals);
-      const userRewardedBalance = toTokenUnitsBN(rewardedBalance, ESD.decimals);
+      const userESDBalance = toTokenUnitsBN(esdBalance.toString(), ESD.decimals);
 
       if (!isCancelled) {
         setUserESDBalance(new BigNumber(userESDBalance));
         setUserPoolBondedBalance(new BigNumber(userPoolBondedBalance));
         setPoolTotalBonded(new BigNumber(poolTotalBonded));
         setUserRewardedBalance(new BigNumber(userRewardedBalance));
-        setCoupons(new BigNumber(totalCoupons));
-        setUserUnreleasedValue(unreleasedValue);
-        setUserUnreleasedLpValue(unreleasedLpValue);
-        setUserUnreleasedRewardValue(unreleasedRewardValue);
-        setStake(toTokenUnitsBN(stakeStr, ESDS.decimals));
-        setTotalStake(toTokenUnitsBN(totalStakeStr, ESDS.decimals));
       }
     }
     updateUserInfo();

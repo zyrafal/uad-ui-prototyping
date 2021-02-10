@@ -105,13 +105,13 @@ function WithdrawDeposit({
         <BoxItemTextBlock
           fontSize="20px"
           color="rgba(255,255,255,0.4)"
-          asset="Default streaming time: 36 hours"
+          asset=""
         />
         <div>
           <NumberInput
             value={withdrawAmount}
             setter={setWithdrawAmount}
-            placeholder="0.000000 UNI-V2"
+            placeholder="0.000000 StableSwap LP"
           >
             <Button
               style={{

@@ -32,14 +32,14 @@ export const getPrice0CumulativeLast = async () => {
 export const getTokenBalance = async (token, account) => {
   if (account === "") return "0";
   let signer = provider.getSigner();
-  const tokenContract = new ethers.Contract(token, daoAbi, signer);
+  const tokenContract = new ethers.Contract(token, dollarAbi, signer);
   return tokenContract.balanceOf(account);
 };
 
 export const getTokenTotalSupply = async (token) => {
   let signer = provider.getSigner();
-  const tokenContract = new ethers.Contract(token, daoAbi, signer);
-  return tokenContract.totalSupply();
+  const dollarContract = new ethers.Contract(token, dollarAbi, signer);
+  return dollarContract.totalSupply();
 };
 
 /**
@@ -51,8 +51,8 @@ export const getTokenTotalSupply = async (token) => {
  */
 export const getTokenAllowance = async (token, account, spender) => {
   let signer = provider.getSigner();
-  const tokenContract = new ethers.Contract(token, daoAbi, signer);
-  return tokenContract.allowance(account, spender);
+  const dollarContract = new ethers.Contract(token, dollarAbi, signer);
+  return dollarContract.allowance(account, spender);
 };
 
 // Døllar Protocol
@@ -66,8 +66,8 @@ export const getTokenAllowance = async (token, account, spender) => {
 export const getBalanceBonded = async (dao, account) => {
   if (account === "") return "0";
   let signer = provider.getSigner();
-  const daoContract = new ethers.Contract(dao, daoAbi, signer);
-  return daoContract.balanceOfBonded(account);
+  const dollarContract = new ethers.Contract(dao, dollarAbi, signer);
+  return dollarContract.balanceOfBonded(account);
 };
 
 /**
@@ -78,8 +78,8 @@ export const getBalanceBonded = async (dao, account) => {
  */
 export const getBalanceOfStaged = async (dao, account) => {
   let signer = provider.getSigner();
-  const daoContract = new ethers.Contract(dao, daoAbi, signer);
-  return daoContract.balanceOfStaged(account);
+  const dollarContract = new ethers.Contract(dao, dollarAbi, signer);
+  return dollarContract.balanceOfStaged(account);
 };
 
 /**
@@ -369,11 +369,20 @@ export const getImplementation = async (dao) => {
  * @param {string} dao address
  * @return {Promise<string>}
  */
+export const getAccountBalance = async (dao, address) => {
+  let signer = provider.getSigner();
+  const dollarContract = new ethers.Contract(dao, dollarAbi, signer);
+  return dollarContract.balanceOf(address);
+};
+
+/**
+ *
+ * @param {string} dao address
+ * @return {Promise<string>}
+ */
 export const getPool = async (dao) => {
   let signer = provider.getSigner();
-  console.log(dao);
   const daoContract = new ethers.Contract(dao, daoAbi, signer);
-  console.log(daoContract);
   return daoContract.pool();
 };
 

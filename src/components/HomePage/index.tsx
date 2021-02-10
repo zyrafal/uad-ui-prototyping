@@ -98,76 +98,86 @@ function HomePage({ hasWeb3, setUser, user, homeData }: HomePageProps) {
       if (!window || !window.provider) {
         return;
       }
-      const poolAddress = await getPoolAddress();
-      console.log(poolAddress)
+      // const poolAddress = await getPoolAddress();
+      // const [
+      //   allRegulations,
+      //   totalSupplyStr,
+      //   totalBondedStr,
+      //   totalStagedStr,
+      //   totalRedeemableStr,
+      //   poolLiquidityStr,
+      //   poolTotalRewardedStr,
+      //   poolTotalClaimableStr,
+      //   totalCouponsStr,
+      //   pairBalanceUSDCStr,
+      //   pairBalanceESDStr,
+      //   bondedBalance,
+      //   poolBondedBalance,
+      //   poolTotalBondedStr,
+      // ] = await Promise.all([
+      //   getAllRegulations(ESDS.addr),
+      //   getTokenTotalSupply(ESD.addr),
+      //   getTotalBonded(ESDS.addr),
+      //   getTotalStaged(ESDS.addr),
+      //   getTotalRedeemable(ESDS.addr),
+      //   getTokenBalance(ESD.addr, UNI.addr),
+      //   getPoolTotalRewarded(poolAddress),
+      //   getPoolTotalClaimable(poolAddress),
+
+      //   getTotalCoupons(ESDS.addr),
+
+      //   getTokenBalance(USDC.addr, UNI.addr),
+      //   getTokenBalance(ESD.addr, UNI.addr),
+
+      //   getBalanceBonded(ESDS.addr, user),
+      //   getPoolBalanceOfBonded(poolAddress, user),
+
+      //   getPoolTotalBonded(poolAddress),
+      // ]);
+      // if (!isCancelled) {
+      //   setEpochTime(epochTimeformatted());
+      //   setEpoch(allRegulations.length);
+      //   setTotalSupply(toTokenUnitsBN(totalSupplyStr, ESD.decimals));
+
+      //   const daoSupply = toTokenUnitsBN(totalBondedStr, ESD.decimals)
+      //     .plus(toTokenUnitsBN(totalStagedStr, ESD.decimals))
+      //     .plus(toTokenUnitsBN(totalRedeemableStr, ESD.decimals));
+      //   setTotalBonded(toTokenUnitsBN(totalBondedStr, ESD.decimals));
+      //   setDaoTotalSupply(daoSupply);
+      //   const poolSupply = toTokenUnitsBN(poolLiquidityStr, ESD.decimals)
+      //     .plus(toTokenUnitsBN(poolTotalRewardedStr, ESD.decimals))
+      //     .plus(toTokenUnitsBN(poolTotalClaimableStr, ESD.decimals));
+      //   setPoolTotalSupply(poolSupply);
+      //   setPoolLiquidity(toTokenUnitsBN(poolLiquidityStr, ESD.decimals));
+
+      //   setCirculatingSupply(
+      //     toTokenUnitsBN(totalSupplyStr, ESD.decimals)
+      //       .minus(daoSupply)
+      //       .minus(poolSupply)
+      //   );
+      //   setTotalCoupons(toTokenUnitsBN(totalCouponsStr, ESD.decimals));
+      //   setPairBalanceUSDC(
+      //     toTokenUnitsBN(pairBalanceUSDCStr, USDC.decimals).multipliedBy(2)
+      //   );
+      //   setPairBalanceESD(
+      //     toTokenUnitsBN(pairBalanceESDStr, ESD.decimals).multipliedBy(2)
+      //   );
+      //   setUserBondedBalance(toTokenUnitsBN(bondedBalance, ESDS.decimals));
+      //   setUserPoolBondedBalance(
+      //     toTokenUnitsBN(poolBondedBalance, UNI.decimals)
+      //   );
+      //   setPoolTotalBonded(toTokenUnitsBN(poolTotalBondedStr, ESD.decimals));
+      // }
+
       const [
-        allRegulations,
-        totalSupplyStr,
-        totalBondedStr,
-        totalStagedStr,
-        totalRedeemableStr,
-        poolLiquidityStr,
-        poolTotalRewardedStr,
-        poolTotalClaimableStr,
-        totalCouponsStr,
-        pairBalanceUSDCStr,
-        pairBalanceESDStr,
-        bondedBalance,
-        poolBondedBalance,
-        poolTotalBondedStr,
+        esdBalance,
       ] = await Promise.all([
-        getAllRegulations(ESDS.addr),
-        getTokenTotalSupply(ESD.addr),
-        getTotalBonded(ESDS.addr),
-        getTotalStaged(ESDS.addr),
-        getTotalRedeemable(ESDS.addr),
-        getTokenBalance(ESD.addr, UNI.addr),
-        getPoolTotalRewarded(poolAddress),
-        getPoolTotalClaimable(poolAddress),
-
-        getTotalCoupons(ESDS.addr),
-
-        getTokenBalance(USDC.addr, UNI.addr),
-        getTokenBalance(ESD.addr, UNI.addr),
-
-        getBalanceBonded(ESDS.addr, user),
-        getPoolBalanceOfBonded(poolAddress, user),
-
-        getPoolTotalBonded(poolAddress),
+        getTokenBalance(ESD.addr, user),
       ]);
+      const userESDBalance = toTokenUnitsBN(esdBalance.toString(), ESD.decimals);
+
       if (!isCancelled) {
-        setEpochTime(epochTimeformatted());
-        setEpoch(allRegulations.length);
-        setTotalSupply(toTokenUnitsBN(totalSupplyStr, ESD.decimals));
-
-        const daoSupply = toTokenUnitsBN(totalBondedStr, ESD.decimals)
-          .plus(toTokenUnitsBN(totalStagedStr, ESD.decimals))
-          .plus(toTokenUnitsBN(totalRedeemableStr, ESD.decimals));
-        setTotalBonded(toTokenUnitsBN(totalBondedStr, ESD.decimals));
-        setDaoTotalSupply(daoSupply);
-        const poolSupply = toTokenUnitsBN(poolLiquidityStr, ESD.decimals)
-          .plus(toTokenUnitsBN(poolTotalRewardedStr, ESD.decimals))
-          .plus(toTokenUnitsBN(poolTotalClaimableStr, ESD.decimals));
-        setPoolTotalSupply(poolSupply);
-        setPoolLiquidity(toTokenUnitsBN(poolLiquidityStr, ESD.decimals));
-
-        setCirculatingSupply(
-          toTokenUnitsBN(totalSupplyStr, ESD.decimals)
-            .minus(daoSupply)
-            .minus(poolSupply)
-        );
-        setTotalCoupons(toTokenUnitsBN(totalCouponsStr, ESD.decimals));
-        setPairBalanceUSDC(
-          toTokenUnitsBN(pairBalanceUSDCStr, USDC.decimals).multipliedBy(2)
-        );
-        setPairBalanceESD(
-          toTokenUnitsBN(pairBalanceESDStr, ESD.decimals).multipliedBy(2)
-        );
-        setUserBondedBalance(toTokenUnitsBN(bondedBalance, ESDS.decimals));
-        setUserPoolBondedBalance(
-          toTokenUnitsBN(poolBondedBalance, UNI.decimals)
-        );
-        setPoolTotalBonded(toTokenUnitsBN(poolTotalBondedStr, ESD.decimals));
+        setPairBalanceESD(new BigNumber(userESDBalance));
       }
     }
     updateUserInfo();
