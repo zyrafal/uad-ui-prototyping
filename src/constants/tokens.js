@@ -59,3 +59,9 @@ export const DCM = {
   decimals: 18,
   symbol: 'DCM',
 }
+
+export const SABLIER = {
+  addr: '0xda036d56840a89b9ab60a7dc4ce2bc84fa42b267',
+  decimals: 18,
+  symbol: 'SABLIER',
+}

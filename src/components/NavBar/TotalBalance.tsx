@@ -7,7 +7,7 @@ import {
   getTokenBalance,
   getTokenTotalSupply
 } from "../../utils/infura";
-import {ESD, ESDS, UNI} from "../../constants/tokens";
+import {ESD, ESDS, UBOND, UNI} from "../../constants/tokens";
 import {formatBN, toTokenUnitsBN} from "../../utils/number";
 import {getPoolAddress} from "../../utils/pool";
 
@@ -36,8 +36,8 @@ function TotalBalance({ user }: TotalBalanceProps) {
         userPoolRewardedBalanceStr, userPoolClaimableBalanceStr,
       ] = await Promise.all([
         getTokenBalance(ESD.addr, user),
-        getBalanceOfStaged(ESDS.addr, user),
-        getBalanceBonded(ESDS.addr, user),
+        getBalanceOfStaged(ESD.addr, user),
+        getBalanceBonded(UBOND.addr, user),
 
         getTokenBalance(ESD.addr, UNI.addr),
         getTokenTotalSupply(UNI.addr),

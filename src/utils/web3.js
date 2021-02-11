@@ -9,6 +9,7 @@ import { UniswapV2Router02 } from "../constants/contracts";
 
 import { ESD, USDC, BOND } from "../constants/tokens";
 
+const sablierAbi = require("../constants/abi/Sablier.json");
 const dollarAbi = require("../constants/abi/Dollar.json");
 const bondingAbi = require("../constants/abi/Bonding.json");
 const bondingShareAbi = require("../constants/abi/BondingShare.json");
@@ -64,7 +65,7 @@ export const approveBondingShare = async (tokenAddr, spender, amt = UINT256_MAX)
   let signer = window.provider.getSigner();
   const oToken = new ethers.Contract(tokenAddr, bondingShareAbi, signer);
   try {
-    const tx = await oToken.approve(spender, 100)
+    const tx = await oToken.approve(spender, 1000)
     notify.hash(tx.hash);
   } catch (error) {
     console.log(error)
@@ -81,7 +82,7 @@ export const approve = async (tokenAddr, spender, amt = UINT256_MAX) => {
   try {
     console.log('=====', spender, amt);
     try{
-    const tx = await oToken.approve(spender, 100)
+    const tx = await oToken.approve(spender, 1000)
     notify.hash(tx.hash);
     } catch(err) {
       console.log(err)
@@ -300,20 +301,17 @@ export const withdraw = async (dao, amount) => {
 };
 
 export const startStream = async (dao, amount) => {
-  const account = await checkConnectedAndGetAddress();
+  // const account = await checkConnectedAndGetAddress();
 
   let signer = window.provider.getSigner();
-  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  const sablierContract = new ethers.Contract(dao, sablierAbi, signer);
 
   try {
-    const tx = await daoContract
-      .startStream(new BigNumber(amount).toFixed(), {
-        from: account,
-      });
-    await tx.wait();
-    notify.hash(tx.hash);
+    const streamId = await sablierContract.nextStreamId();
+    const result = await sablierContract
+      .withdrawFromStream(streamId, toTokenUnitsBN(amount.toString(), ESD.decimals).toNumber());
   } catch (error) {
-    
+    console.log(error)
   }
 };
 

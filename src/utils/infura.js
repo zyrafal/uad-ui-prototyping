@@ -3,7 +3,7 @@ import * as ethers from "ethers";
 
 import BigNumber from "bignumber.js";
 import { UniswapV2Router02 } from "../constants/contracts";
-import { ESD, UNI, USDC } from "../constants/tokens";
+import { ESD, UNI, USDC, BOND } from "../constants/tokens";
 import { POOL_EXIT_LOCKUP_EPOCHS } from "../constants/values";
 
 const dollarAbi = require("../constants/abi/Dollar.json");
@@ -83,7 +83,7 @@ export const getBalanceBonded = async (dao, account) => {
   if (account === "") return "0";
   let signer = provider.getSigner();
   const bondingShareContract = new ethers.Contract(dao, bondingShareAbi, signer);
-  return bondingShareContract.balanceOf(account);
+  return bondingShareContract.balanceOf(BOND.addr);
 };
 
 /**

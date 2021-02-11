@@ -10,7 +10,7 @@ import {
   boostStream,
 } from "../../utils/web3";
 import { isPos, toBaseUnitBN } from "../../utils/number";
-import { ESD, ESDS } from "../../constants/tokens";
+import { ESD, ESDS, SABLIER } from "../../constants/tokens";
 import NumberInput from "../common/NumberInput";
 import Box from "../../components/Box";
 import BoxItem from "../../components/BoxItem";
@@ -53,15 +53,15 @@ function WithdrawDeposit({
   };
 
   const handleWithdraw = async (type) => {
-    await startStream(ESDS.addr, toBaseUnitBN(withdrawAmount, ESD.decimals));
-    if (type === "boost") {
-      await boostStream(ESDS.addr);
-    }
+    await startStream(SABLIER.addr, toBaseUnitBN(withdrawAmount, SABLIER.decimals));
+    // if (type === "boost") {
+    //   await boostStream(ESDS.addr);
+    // }
     setWithdrawSetting(false);
   };
   return (
     <Box bgcolor="#282828" height="288px">
-      <BoxItem>
+      {/* <BoxItem>
         <BoxItemTextBlock fontSize="20px" color="#ffffff" asset={stagedText} />
         <div>
           <NumberInput
@@ -98,7 +98,7 @@ function WithdrawDeposit({
             text={GetFromBigNumber(balance).toString().replace(",", ".")}
           />
         </div>
-      </BoxItem>
+      </BoxItem> */}
 
       <BoxItem>
         <BoxItemTextBlock

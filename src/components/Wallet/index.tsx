@@ -214,6 +214,12 @@ function Wallet({
         <div className={styles.container}>
           {!isMobile && (
             <>
+
+              <WithdrawDeposit
+                balance={userESDBalance}
+                stagedBalance={userStagedBalance}
+                status={userStatus}
+              />
               {userUnreleasedValue > 0 && (
                 <Streaming
                   streamTimeleft={streamTimeleft}
