@@ -11,7 +11,7 @@ import {
   getTotalRedeemable,
 } from "../../utils/infura";
 import { CSSTransition } from "react-transition-group";
-import { ESD, ESDS } from "../../constants/tokens";
+import { CFDC, ESD, ESDS } from "../../constants/tokens";
 import { toTokenUnitsBN } from "../../utils/number";
 import BigNumber from "bignumber.js";
 import PurchaseCoupons from "./PurchaseCoupons";
@@ -77,7 +77,7 @@ function CouponMarket({
     async function updateUserInfo() {
       const [balanceStr, allowanceStr] = await Promise.all([
         getTokenBalance(ESD.addr, user),
-        getTokenAllowance(ESD.addr, user, ESDS.addr),
+        getTokenAllowance(ESD.addr, user, CFDC.addr),
       ]);
 
       const userBalance = toTokenUnitsBN(balanceStr, ESD.decimals);
@@ -112,9 +112,9 @@ function CouponMarket({
         redeemableStr,
       ] = await Promise.all([
         getTokenTotalSupply(ESD.addr),
-        getTotalDebt(ESDS.addr),
-        getTotalCoupons(ESDS.addr),
-        getTotalRedeemable(ESDS.addr),
+        getTotalDebt(CFDC.addr),
+        getTotalCoupons(CFDC.addr),
+        getTotalRedeemable(CFDC.addr),
       ]);
 
       const totalSupply = toTokenUnitsBN(supplyStr, ESD.decimals);
@@ -130,7 +130,7 @@ function CouponMarket({
 
         if (totalDebt.isGreaterThan(new BigNumber(1))) {
           const couponPremiumStr = await getCouponPremium(
-            ESDS.addr,
+            CFDC.addr,
             ONE_COUPON
           );
           setCouponPremium(toTokenUnitsBN(couponPremiumStr, ESD.decimals));
@@ -154,7 +154,7 @@ function CouponMarket({
       alert("connect metamask first");
       return;
     }
-    await approve(ESD.addr, ESDS.addr);
+    await approve(ESD.addr, CFDC.addr);
     SetUnlockBtn(true);
   };
 
