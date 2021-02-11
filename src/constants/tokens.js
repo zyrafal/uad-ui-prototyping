@@ -12,32 +12,32 @@ export const USDC = {
 
 // rename ESD to UAD
 export const ESD = {
-  addr: '0xf693f8cf0e923dc6866f3aaef414356b8b8a94f3',
+  addr: '0x833f2efcc62b32ea8aec363e891c2bcd8c8ac1ed',
   decimals: 18,
   symbol: 'uAD',
 };
 
 // rename ESDS to U8DS
 export const ESDS = {
-  addr: '0x19ac2154d1d6d287568fa46bc038100617f860b0',
+  addr: '0x6273148c6d09ca86184a53f8e15ed760ac905b76',
   decimals: 18,
   symbol: 'uADS',
 };
 
 export const UBOND = {
-  addr: '0xa217b84c99874c1d8d38a76c87cb96df87940ab1',
+  addr: '0x7c0dd393a2a6ce5da2826dd8906a62fc7d10c802',
   decimals: 18,
   symbol: 'uBOND',
 };
 
 export const BOND = {
-  addr: '0x7c0dd393a2a6ce5da2826dd8906a62fc7d10c802',
+  addr: '0xf693f8cf0e923dc6866f3aaef414356b8b8a94f3',
   decimals: 18,
   symbol: 'BOND',
 };
 
 export const TWAPOracle = {
-  addr: '0xe2951811053577f25cc8a8c089b310af7f158315',
+  addr: '0x8cb127f29e30b2143330a5070e79174bc2bbd8a6',
   decimals: 18,
   symbol: 'TWAPOracle',
 };
