@@ -106,7 +106,7 @@ function Wallet({
         getTokenTotalSupply(ESD.addr),
       ]);
       const userESDBalance = toTokenUnitsBN(esdBalance.toString(), ESD.decimals);
-      const userStagedBalance = toTokenUnitsBN("0", ESDS.decimals);
+      const userStagedBalance = toTokenUnitsBN(esdBalance.toString(), ESD.decimals);
       const userBondedBalance = toTokenUnitsBN(bondedBalance.toString(), BOND.decimals);
       const userStatus = parseInt("0", 10);
       if (!isCancelled) {
@@ -138,9 +138,7 @@ function Wallet({
       alert("connect metamask first");
       return;
     }
-    console.log('---')
     await approve(ESD.addr, BOND.addr);
-    console.log('====')
     await approveBondingShare(UBOND.addr, BOND.addr);
     SetUnlockBtn(true);
   };

@@ -19,7 +19,7 @@ import {
 } from "../../utils/infura";
 import { getPoolAddress } from "../../utils/pool";
 
-import { ESD, ESDS, UNI } from "../../constants/tokens";
+import { ESD, ESDS, UNI, BOND, UBOND } from "../../constants/tokens";
 import ConnectModal from "./ConnectModal";
 import { toTokenUnitsBN } from "../../utils/number";
 import { BigNumberPlainText } from "../common/index";
@@ -84,16 +84,20 @@ function ConnectButton({ user, setUser, setter }: connectButtonProps) {
     async function updateUserInfo() {
       const [
         esdBalance,
+        bondedBalance,
       ] = await Promise.all([
         getTokenBalance(ESD.addr, user),
+        getBalanceBonded(UBOND.addr, user),
       ]);
       const userESDBalance = toTokenUnitsBN(esdBalance.toString(), ESD.decimals);
+      const userBondedBalance = toTokenUnitsBN(bondedBalance.toString(), BOND.decimals);
 
       if (!isCancelled) {
         setUserESDBalance(new BigNumber(userESDBalance));
         setUserPoolBondedBalance(new BigNumber(userPoolBondedBalance));
         setPoolTotalBonded(new BigNumber(poolTotalBonded));
         setUserRewardedBalance(new BigNumber(userRewardedBalance));
+        setUserBondedBalance(new BigNumber(userBondedBalance));
       }
     }
     updateUserInfo();

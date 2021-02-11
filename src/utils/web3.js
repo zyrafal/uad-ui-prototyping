@@ -587,20 +587,30 @@ export const bond = async (dao, amount) => {
 };
 
 export const unbond = async (dao, amount) => {
-  const account = await checkConnectedAndGetAddress();
+  // const account = await checkConnectedAndGetAddress();
 
   let signer = window.provider.getSigner();
-  const daoContract = new ethers.Contract(dao, daoAbi, signer);
+  const bondingContract = new ethers.Contract(dao, bondingAbi, signer);
 
   try {
-    const tx = await daoContract
-      .unbond(new BigNumber(amount).toFixed(), {
-        from: account,
-      });
-    await tx.wait();
-    notify.hash(tx.hash);
+    await bondingContract
+      .redeemShares(toTokenUnitsBN(amount.toString(), BOND.decimals).toNumber());
   } catch (error) {
-    
+    console.log(error);
+  }
+};
+
+export const unbondAll = async (dao, amount) => {
+  // const account = await checkConnectedAndGetAddress();
+
+  let signer = window.provider.getSigner();
+  const bondingContract = new ethers.Contract(dao, bondingAbi, signer);
+
+  try {
+    await bondingContract
+      .redeemAllShares();
+  } catch (error) {
+    console.log(error);
   }
 };
 

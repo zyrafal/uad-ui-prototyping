@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@aragon/ui";
 import BigNumber from "bignumber.js";
 import { BoxItemTextBlock, MaxButton } from "../common/index";
-import { bond, unbondUnderlying } from "../../utils/web3";
+import { bond, unbond, unbondUnderlying } from "../../utils/web3";
 import { isPos, toBaseUnitBN } from "../../utils/number";
 import { ESD, ESDS, BOND } from "../../constants/tokens";
 import NumberInput from "../common/NumberInput";
@@ -89,15 +89,11 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
               wide
               label="- Unbond"
               onClick={async () => {
-                await unbondUnderlying(
-                  ESDS.addr,
-                  toBaseUnitBN(unbondAmount, ESD.decimals)
-                );
+                await unbond(BOND.addr, toBaseUnitBN(unbondAmount, BOND.decimals));;
               }}
               disabled={
                 status === 1 ||
-                !isPos(unbondAmount) ||
-                unbondAmount.isGreaterThan(bonded)
+                !isPos(unbondAmount)
               }
             />
           </NumberInput>
