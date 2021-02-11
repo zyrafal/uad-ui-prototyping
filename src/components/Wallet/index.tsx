@@ -22,6 +22,7 @@ import {
   boostStream,
   cancelStream,
   approve,
+  approveBondingShare,
 } from "../../utils/web3";
 import { formatBN } from "../../utils/number";
 import { ownership } from "../../utils/number";
@@ -87,6 +88,7 @@ function Wallet({
       const [
         esdBalance,
         esdAllowance,
+        ubondAllowance,
         bondedBalance,
         // status,
         // unreleasedValue,
@@ -94,6 +96,7 @@ function Wallet({
         totalStakeStr,
       ] = await Promise.all([
         getTokenBalance(ESD.addr, user),
+        getTokenAllowance(ESD.addr, user, UBOND.addr),
         getBondTokenAllowance(UBOND.addr, user, ESD.addr),
         // getBalanceOfStaged(ESDS.addr, user),
         getBalanceBonded(UBOND.addr, user),
@@ -115,7 +118,6 @@ function Wallet({
         setUserStatus(userStatus);
       }
       // setUserUnreleasedValue(unreleasedValue);
-      console.log(esdAllowance.toString())
       if (new BigNumber(esdAllowance.toString()).comparedTo(MAX_UINT256) === 0) {
         SetUnlockBtn(true);
       }
@@ -136,7 +138,10 @@ function Wallet({
       alert("connect metamask first");
       return;
     }
-    await approve(ESD.addr, ESDS.addr);
+    console.log('---')
+    await approve(ESD.addr, BOND.addr);
+    console.log('====')
+    await approveBondingShare(UBOND.addr, BOND.addr);
     SetUnlockBtn(true);
   };
   const tradelink =

@@ -9,6 +9,7 @@ import { UniswapV2Router02 } from "../constants/contracts";
 
 import { ESD, USDC, BOND } from "../constants/tokens";
 
+const dollarAbi = require("../constants/abi/Dollar.json");
 const bondingAbi = require("../constants/abi/Bonding.json");
 const bondingShareAbi = require("../constants/abi/BondingShare.json");
 const uniswapRouterAbi = require("../constants/abi/UniswapV2Router02.json");
@@ -59,15 +60,34 @@ export const checkConnectedAndGetAddress = async () => {
  * ERC20 Utilities
  */
 
-export const approve = async (tokenAddr, spender, amt = UINT256_MAX) => {
-  const account = await checkConnectedAndGetAddress();
+export const approveBondingShare = async (tokenAddr, spender, amt = UINT256_MAX) => {
   let signer = window.provider.getSigner();
-  const oToken = new ethers.Contract(tokenAddr, testnetUSDCAbi, signer);
+  const oToken = new ethers.Contract(tokenAddr, bondingShareAbi, signer);
   try {
-    const tx = await oToken.approve(spender, amt, { from: account })
-    const hash = await tx.wait()
+    const tx = await oToken.approve(spender, 100)
     notify.hash(tx.hash);
   } catch (error) {
+    console.log(error)
+  }
+};
+
+/**
+ * ERC20 Utilities
+ */
+
+export const approve = async (tokenAddr, spender, amt = UINT256_MAX) => {
+  let signer = window.provider.getSigner();
+  const oToken = new ethers.Contract(tokenAddr, dollarAbi, signer);
+  try {
+    console.log('=====', spender, amt);
+    try{
+    const tx = await oToken.approve(spender, 100)
+    notify.hash(tx.hash);
+    } catch(err) {
+      console.log(err)
+    }
+  } catch (error) {
+    console.log(error)
 
   }
 };
